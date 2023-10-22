@@ -1,7 +1,8 @@
-package com.example.quetzalli
+package com.example.quetzalli.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.quetzalli.R
 import com.example.quetzalli.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
