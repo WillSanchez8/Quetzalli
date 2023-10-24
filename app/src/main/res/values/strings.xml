@@ -1,8 +1,4 @@
 <resources>
     <string name="app_name">Quetzalli</string>
 
-    <!--Vista Splash-->
-    <string name="logo_app">Logo de Quetzalli</string>
-    <string name="slogan">Slogan de Quetzalli😉</string>
-    <string name="btn_primary">prueba</string>
 </resources>
