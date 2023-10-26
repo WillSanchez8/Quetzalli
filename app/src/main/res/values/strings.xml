@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Quetzalli</string>
 
+    <!-- Bottom Navigation -->
+    <string name="opcion_1">Sesión</string>
+    <string name="opcion_2">Avance</string>
+    <string name="opcion_3">Perfil</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

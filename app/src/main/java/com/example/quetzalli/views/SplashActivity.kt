@@ -14,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
         init()
     }
     private fun init(){
-        binding.tvSlogan.setText(R.string.slogan)
+
     }
 
 }
