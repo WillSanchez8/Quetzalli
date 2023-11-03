@@ -5,10 +5,13 @@
     <string name="opcion_1">Sesión</string>
     <string name="opcion_2">Avance</string>
     <string name="opcion_3">Perfil</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fragmento_sesion">fragmento sesión</string>
     <string name="fragmento_profile">fragmento de perfil</string>
     <string name="fragmento_avance">fragmento de avance</string>
+
+    <!-- Ventana Ayuda -->
+    <string name="help">Estamos aquí para ayudarte</string>
+    <string name="FAQ">Preguntas Frecuentes</string>
 
 </resources>

@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/sesion"
-        android:name="com.example.quetzalli.views.SesionFragment"
+        android:name="com.example.quetzalli.ui.views.SesionFragment"
         android:label="fragment_sesion"
         tools:layout="@layout/fragment_sesion" />
     <fragment
         android:id="@+id/avance"
-        android:name="com.example.quetzalli.views.AvanceFragment"
+        android:name="com.example.quetzalli.ui.views.AvanceFragment"
         android:label="fragment_avance"
         tools:layout="@layout/fragment_avance" />
     <fragment
         android:id="@+id/perfil"
-        android:name="com.example.quetzalli.views.ProfileFragment"
+        android:name="com.example.quetzalli.ui.views.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

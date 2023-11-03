@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="LockedOrientationActivity">
 
     <application
+        android:name=".ExampleApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,11 +15,12 @@
         android:theme="@style/Theme.Quetzalli"
         tools:targetApi="31">
         <activity
-            android:name=".views.SplashActivity"
+            android:name=".ui.views.SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".views.MainActivity"
-            android:exported="true">
+            android:name=".ui.views.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

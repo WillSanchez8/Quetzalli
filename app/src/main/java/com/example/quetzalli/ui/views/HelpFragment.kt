@@ -1,21 +1,21 @@
-package com.example.quetzalli.views
+package com.example.quetzalli.ui.views
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.quetzalli.R
-import com.example.quetzalli.databinding.FragmentSesionBinding
+import com.example.quetzalli.databinding.FragmentHelpBinding
 
-class SesionFragment : Fragment() {
+class HelpFragment : Fragment() {
 
-    private lateinit var binding: FragmentSesionBinding
+    private lateinit var binding: FragmentHelpBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding  = FragmentSesionBinding.inflate(inflater, container, false)
+        // Inflate the layout for this fragment
+        binding  = FragmentHelpBinding.inflate(inflater, container, false)
         return binding.root
     }
 

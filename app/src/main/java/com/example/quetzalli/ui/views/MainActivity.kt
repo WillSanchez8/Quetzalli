@@ -1,4 +1,4 @@
-package com.example.quetzalli.views
+package com.example.quetzalli.ui.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
