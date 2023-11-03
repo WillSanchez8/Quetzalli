@@ -13,5 +13,10 @@
     <!-- Ventana Ayuda -->
     <string name="help">Estamos aquí para ayudarte</string>
     <string name="FAQ">Preguntas Frecuentes</string>
+    <string name="question_name">Pregunta 1</string>
+
+    <!--Item de Ayuda-->
+    <string name="ic_expand">icono de expandir</string>
+    <string name="question_description">Descripción</string>
 
 </resources>

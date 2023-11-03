@@ -1,4 +1,4 @@
-package com.example.quetzalli.ui.views
+package com.example.quetzalli.views
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
