@@ -1,4 +1,22 @@
 <resources>
     <string name="app_name">Quetzalli</string>
 
+    <!-- Bottom Navigation -->
+    <string name="opcion_1">Sesión</string>
+    <string name="opcion_2">Avance</string>
+    <string name="opcion_3">Perfil</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragmento_sesion">fragmento sesión</string>
+    <string name="fragmento_profile">fragmento de perfil</string>
+    <string name="fragmento_avance">fragmento de avance</string>
+
+    <!-- Ventana Ayuda -->
+    <string name="help">Estamos aquí para ayudarte</string>
+    <string name="FAQ">Preguntas Frecuentes</string>
+    <string name="question_name">Pregunta 1</string>
+
+    <!--Item de Ayuda-->
+    <string name="ic_expand">icono de expandir</string>
+    <string name="question_description">Descripción</string>
+
 </resources>

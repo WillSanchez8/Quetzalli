@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/sesion"
+        android:enabled="true"
+        android:icon="@drawable/ic_session"
+        android:title="@string/opcion_1"/>
+    <item
+        android:id="@+id/avance"
+        android:icon="@drawable/ic_progress"
+        android:title="@string/opcion_2"/>
+    <item
+        android:id="@+id/perfil"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/opcion_3"/>
+</menu>

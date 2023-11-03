@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/sesion">
+
+    <fragment
+        android:id="@+id/sesion"
+        android:name="com.example.quetzalli.views.SesionFragment"
+        android:label="fragment_sesion"
+        tools:layout="@layout/fragment_sesion" />
+    <fragment
+        android:id="@+id/avance"
+        android:name="com.example.quetzalli.views.AvanceFragment"
+        android:label="fragment_avance"
+        tools:layout="@layout/fragment_avance" />
+    <fragment
+        android:id="@+id/perfil"
+        android:name="com.example.quetzalli.views.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
