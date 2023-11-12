@@ -18,5 +18,22 @@
     <!--Item de Ayuda-->
     <string name="ic_expand">icono de expandir</string>
     <string name="question_description">Descripción</string>
+    <string name="logo">icono de quetzalli</string>
+
+    <!-- Ventana de Inicio de Sesión -->
+    <string name="sign_in">Iniciar Sesión</string>
+    <string name="slogan">\"Entrena tu cerebro\"</string>
+    <string name="sign_in_with_google">Iniciar Sesión con Google</string>
+    <string name="complete_register">Completa tu registro</string>
+    <string name="about_you">Cuéntanos más sobre ti</string>
+    <string name="name">*Nombre</string>
+    <string name="genere">Género</string>
+    <string name="female">Femenino</string>
+    <string name="male">Masculino</string>
+    <string name="other">Otro</string>
+    <string name="date">Fecha de Nacimiento</string>
+    <string name="ocupation">Ocupación</string>
+    <string name="terms_and_conditions">He leído y aceptado los Términos y Condiciones de uso</string>
+    <string name="next">Siguiente</string>
 
 </resources>
