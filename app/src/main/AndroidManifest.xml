@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="LockedOrientationActivity">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".ExampleApplication"
         android:allowBackup="true"
@@ -18,17 +20,17 @@
             android:name=".views.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".views.SplashActivity"
-            android:exported="false" />
+            android:name=".views.IniActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".views.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

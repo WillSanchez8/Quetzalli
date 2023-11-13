@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/iv_logo"
+        android:id="@+id/iv_ini"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:src="@drawable/ic_logo"
@@ -52,7 +52,7 @@
         android:layout_marginTop="100dp"
         android:backgroundTint="@color/md_theme_light_shadow"
         android:textColor="@color/md_theme_light_onPrimary"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo"
+        app:layout_constraintTop_toBottomOf="@+id/iv_ini"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

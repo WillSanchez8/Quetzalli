@@ -1,4 +1,4 @@
-package com.example.quetzalli.models
+package com.example.quetzalli.data.models
 
 import java.io.Serializable
 

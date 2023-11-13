@@ -7,7 +7,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".views.RegisterFragment">
 
         <com.google.android.material.textview.MaterialTextView
@@ -120,6 +120,10 @@
             app:boxStrokeColor="@color/seed"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_calendar"
+            app:endIconTint="@null"
+            app:endIconContentDescription="@string/content_description_end_icon"
             app:layout_constraintTop_toBottomOf="@+id/rg_genere">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -128,7 +132,6 @@
                 android:layout_height="wrap_content"
                 android:focusable="false"
                 android:hint="@string/date"
-                android:onClick="showDatePickerDialog"
                 android:required="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -143,6 +146,7 @@
             android:layout_marginEnd="16dp"
             android:textColorHint="@color/seed"
             app:boxStrokeColor="@color/seed"
+            android:hint="@string/ocupation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/til_date">
@@ -151,11 +155,9 @@
                 android:id="@+id/et_ocupation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/ocupation"
                 android:inputType="none" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <CheckBox
             android:id="@+id/cb_terms_and_conditions"
