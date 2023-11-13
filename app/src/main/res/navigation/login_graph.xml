@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/login_graph.xml">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_graph"
+    app:startDestination="@id/signIn">
+    <fragment
+        android:id="@+id/signIn"
+        android:name="com.example.quetzalli.views.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signIn_to_register"
+            app:destination="@id/register" />
+    </fragment>
+    <fragment
+        android:id="@+id/register"
+        android:name="com.example.quetzalli.views.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_termsOfConditionsFragment"
+            app:destination="@id/termsOfConditions" />
+    </fragment>
+    <fragment
+        android:id="@+id/termsOfConditions"
+        android:name="com.example.quetzalli.views.TermsOfConditionsFragment"
+        android:label="fragment_terms_of_conditions"
+        tools:layout="@layout/fragment_terms_of_conditions" />
 </navigation>

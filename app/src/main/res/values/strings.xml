@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Quetzalli</string>
 
+    <string name="default_web_client_id">226791460010-qqnagc53dtmus10mjfunlb3u1qvtar9n.apps.googleusercontent.com</string>
+
     <!-- Bottom Navigation -->
     <string name="opcion_1">Sesión</string>
     <string name="opcion_2">Avance</string>
@@ -35,5 +37,6 @@
     <string name="ocupation">Ocupación</string>
     <string name="terms_and_conditions">He leído y aceptado los Términos y Condiciones de uso</string>
     <string name="next">Siguiente</string>
+    <string name="content_description_end_icon">Icono de calendario</string>
 
 </resources>
