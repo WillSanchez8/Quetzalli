@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.DataPersonalFragment"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/card_state_"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:background="#1E5FA6">
+        <TextView
+            android:id="@+id/datos_perso"
+            android:layout_width="321dp"
+            android:layout_height="28dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="37dp"
+            android:text="@string/datos_perso"
+            android:textAppearance="@style/datos_perso"
+            android:lineSpacingExtra="-6sp"
+            android:gravity="center_horizontal|center_vertical" />
+        <View
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="23dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="37dp"
+            android:background="@drawable/backbutton"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/cambiar_tus"
+        android:layout_width="321dp"
+        android:layout_height="28dp"
+        android:layout_gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/cambiar_tus"
+        android:textAppearance="@style/cambiar_tus"
+        android:lineSpacingExtra="-1sp"
+        android:gravity="center_horizontal|center_vertical" />
+
+    <ImageView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/photo_user"
+        android:layout_width="111dp"
+        android:layout_height="111dp"
+        android:layout_gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="283dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        android:hint="@string/nombre"
+        android:layout_marginTop="15dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/g_nero"
+        android:layout_width="64dp"
+        android:layout_height="39dp"
+        android:text="@string/g_nero"
+        android:textAppearance="@style/g_nero"
+        android:layout_marginLeft="63dp"
+        android:lineSpacingExtra="2sp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="15dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <CheckBox
+            android:id="@+id/check_masculino"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/masculino"
+            android:layout_marginLeft="90dp"/>
+        <CheckBox
+            android:id="@+id/check_femenino"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/femenino"
+            android:layout_marginLeft="200dp"/>
+    </RelativeLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="283dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        android:hint="@string/ocupaci_n"
+        android:layout_marginTop="15dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ocupation_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="283dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        android:hint="@string/fecha_de_na"
+        android:layout_marginTop="15dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/birthdate_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="283dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        android:hint="@string/contrase_a"
+        android:layout_marginTop="15dp"
+        app:endIconMode="password_toggle">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/guardar_c"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="217dp"/>
+
+</LinearLayout>

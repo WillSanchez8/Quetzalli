@@ -13,7 +13,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.quetzalli.R
-import com.example.quetzalli.data.repository.FetchResult
 import com.example.quetzalli.databinding.FragmentSignInBinding
 import com.example.quetzalli.viewmodel.UserVM
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -21,7 +20,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SignInFragment : Fragment() {
@@ -29,6 +30,7 @@ class SignInFragment : Fragment() {
     private lateinit var binding: FragmentSignInBinding
     private lateinit var navController: NavController
     private val userVM : UserVM by viewModels()
+    @Inject lateinit var firebaseAuth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
     // Define el lanzador de resultados de actividad
@@ -52,7 +54,19 @@ class SignInFragment : Fragment() {
         initGoogleSignInClient()
         init()
         registerEvents()
+
+        // Comprueba si el usuario ya ha iniciado sesión con Google
+        val googleSignInAccount = GoogleSignIn.getLastSignedInAccount(requireActivity())
+        if (googleSignInAccount != null) {
+            // El usuario ya ha iniciado sesión, obtén el FirebaseUser actual
+            val firebaseUser = firebaseAuth.currentUser
+            if (firebaseUser != null) {
+                // Actualiza el LiveData 'user' en tu ViewModel
+                userVM.user.value = firebaseUser
+            }
+        }
     }
+
 
     private fun initGoogleSignInClient() {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -76,20 +90,23 @@ class SignInFragment : Fragment() {
         userVM.user.observe(viewLifecycleOwner) { user ->
             if (user != null) {
                 // Si el inicio de sesión fue exitoso, verifica si el perfil del usuario está completo
+                userVM.checkIfUserExists(user.uid)
+            }
+        }
+
+        userVM.userCheckResult.observe(viewLifecycleOwner) { isProfileComplete ->
+            if (isProfileComplete) {
+                // Si el perfil del usuario está completo, dirígelo a MainActivity
+                val intent = Intent(activity, MainActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+
+                // Guarda el estado de inicio de sesión en SharedPreferences
                 val sharedPref = activity?.getSharedPreferences("MyPrefs", MODE_PRIVATE)
-                val isProfileComplete = sharedPref?.getBoolean("isProfileComplete", false)
-                if (isProfileComplete == true) {
-                    // Si el perfil del usuario está completo, dirígelo a MainActivity
-                    val intent = Intent(activity, MainActivity::class.java)
-                    startActivity(intent)
-                    activity?.finish()
-                } else {
-                    // Si el perfil del usuario no está completo, dirígelo a RegisterFragment
-                    findNavController().navigate(R.id.action_signIn_to_register)
-                }
+                sharedPref?.edit()?.putBoolean("isLoggedIn", true)?.apply()
             } else {
-                // Muestra un mensaje de error
-                Snackbar.make(binding.root, "Ocurrió un error", Snackbar.LENGTH_SHORT).show()
+                // Si el perfil del usuario no está completo, dirígelo a RegisterFragment
+                findNavController().navigate(R.id.action_signIn_to_register)
             }
         }
     }
@@ -100,7 +117,7 @@ class SignInFragment : Fragment() {
             val account = task.getResult(ApiException::class.java)
             userVM.loginWithGoogle(account.idToken!!)
         } catch (e: ApiException) {
-            // Maneja la excepción
+            Snackbar.make(binding.root, "Ocurrió un error", Snackbar.LENGTH_SHORT).show()
         }
     }
 }

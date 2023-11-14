@@ -54,6 +54,7 @@
             android:layout_marginEnd="16dp"
             android:textColorHint="@color/seed"
             app:boxStrokeColor="@color/seed"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_about_you">
@@ -122,6 +123,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:endIconMode="custom"
             app:endIconDrawable="@drawable/ic_calendar"
+            app:errorEnabled="true"
             app:endIconTint="@null"
             app:endIconContentDescription="@string/content_description_end_icon"
             app:layout_constraintTop_toBottomOf="@+id/rg_genere">
@@ -147,6 +149,7 @@
             android:textColorHint="@color/seed"
             app:boxStrokeColor="@color/seed"
             android:hint="@string/ocupation"
+            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/til_date">
@@ -155,6 +158,7 @@
                 android:id="@+id/et_ocupation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/ocupation"
                 android:inputType="none" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -166,7 +170,6 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:text="@string/terms_and_conditions"
             android:textColor="@color/seed"
             android:textSize="12sp"
             app:layout_constraintTop_toBottomOf="@+id/til_ocupation" />
