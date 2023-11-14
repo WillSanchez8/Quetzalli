@@ -48,7 +48,6 @@
     <string name="other">Otro</string>
     <string name="date">Fecha de Nacimiento</string>
     <string name="ocupation">Ocupación</string>
-    <string name="terms_and_conditions">He leído y aceptado los Términos y Condiciones de uso</string>
     <string name="next">Siguiente</string>
     <string name="content_description_end_icon">Icono de calendario</string>
 </resources>
