@@ -39,4 +39,10 @@
     <string name="next">Siguiente</string>
     <string name="content_description_end_icon">Icono de calendario</string>
 
+    <!-- Ventana de Notificaciones -->
+    <string name="Rnotificaciones">Recibi Notificaciones</string>
+    <string name="Pnotificaciones">Programar Notificaciones</string>
+    <string name="DesRecibir">No dejes fuera tu salud, nosotros te recordaremos cada dia tus pruebas </string>
+    <string name="DesProgramar">Programa tus notificaciones para que te recordemos tus pruebas</string>
+
 </resources>
