@@ -3,6 +3,11 @@ package com.example.quetzalli.views
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +15,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.RadioButton
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.example.quetzalli.R
 import com.example.quetzalli.databinding.FragmentRegisterBinding
 import com.example.quetzalli.viewmodel.UserVM
@@ -23,6 +30,7 @@ class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
     private val userVM : UserVM by viewModels()
+    private lateinit var navController: NavController
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,12 +47,14 @@ class RegisterFragment : Fragment() {
     }
 
     private fun init(){
+        navController = findNavController()
+
         val datePickerBuilder = MaterialDatePicker.Builder.datePicker()
         datePickerBuilder.setTitleText("Selecciona una fecha")
         datePickerBuilder.setInputMode(MaterialDatePicker.INPUT_MODE_TEXT)
         val datePicker = datePickerBuilder.build()
 
-        binding.tilDate.setEndIconOnClickListener {
+        binding.tilDate.editText?.setOnClickListener {
             datePicker.show(childFragmentManager, "DATE_PICKER")
         }
 
@@ -52,15 +62,35 @@ class RegisterFragment : Fragment() {
             // Aquí puedes manejar la fecha seleccionada
             val dateString = datePicker.headerText
             binding.etDate.setText(dateString)
+            binding.tilDate.error = null // Esto eliminará el mensaje de error
+
         }
+
+        val spannableString = SpannableString("Acepto los Términos y Condiciones de uso")
+        val clickableSpan: ClickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                navController.navigate(R.id.action_registerFragment_to_termsOfConditionsFragment)
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.isUnderlineText = true // Esto hará que el texto esté subrayado
+            }
+        }
+
+        spannableString.setSpan(clickableSpan, 11, 33, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        binding.cbTermsAndConditions.text = spannableString
+        binding.cbTermsAndConditions.movementMethod = LinkMovementMethod.getInstance()
+    }
+
+
+    override fun onResume() {
+        super.onResume()
 
         val ocupation = arrayOf("Estudiante", "Profesor", "Empleado", "Otro")
         val adapter = context?.let { ArrayAdapter(it, R.layout.ocupation_item, ocupation) }
         binding.etOcupation.setAdapter(adapter)
-
-        binding.etOcupation.setOnItemClickListener { parent, view, position, id ->
-            val selectedItem = parent.getItemAtPosition(position).toString()
-        }
     }
 
     private fun validateFields(): Boolean {
