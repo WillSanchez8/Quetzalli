@@ -39,9 +39,22 @@
     <string name="content_description_end_icon">Icono de calendario</string>
 
     <!-- Ventana de Notificaciones -->
-    <string name="Rnotificaciones">Recibi Notificaciones</string>
+    <string name="Rnotificaciones">Recibir Notificaciones</string>
     <string name="Pnotificaciones">Programar Notificaciones</string>
     <string name="DesRecibir">No dejes fuera tu salud, nosotros te recordaremos cada dia tus pruebas </string>
     <string name="DesProgramar">Programa tus notificaciones para que te recordemos tus pruebas</string>
+    <!-- Datos personales -->
+    <string name="datos_perso">Datos personales</string>
+    <string name="cambiar_tus">Cambiar tus datos personales.</string>
+    <string name="label_name">Nombre</string>
+    <string name="nombre">Nombre</string>
+    <string name="g_nero">Género</string>
+    <string name="masculino">Masculino</string>
+    <string name="femenino">Femenino</string>
+    <string name="ocupaci_n">Ocupación</string>
+    <string name="fecha_de_na">Fecha de nacimiento</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="guardar_c">Guardar cambios</string>
+    <string name="photo_user">Fotografía de usuario</string>
 
 </resources>
