@@ -28,7 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Rnotificaciones"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:textAppearance="?attr/textAppearanceTitleMedium" />
 
@@ -41,9 +41,9 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:layout_weight="1"
-                        android:gravity="left|top"
+                        android:gravity="start|top"
                         android:text="@string/DesRecibir" />
 
                     <com.google.android.material.materialswitch.MaterialSwitch
@@ -85,9 +85,9 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:layout_weight="1"
-                        android:gravity="left|top"
+                        android:gravity="start|top"
                         android:text="@string/DesProgramar" />
 
                     <com.google.android.material.materialswitch.MaterialSwitch
