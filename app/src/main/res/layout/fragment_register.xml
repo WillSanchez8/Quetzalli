@@ -148,7 +148,6 @@
             android:layout_marginEnd="16dp"
             android:textColorHint="@color/seed"
             app:boxStrokeColor="@color/seed"
-            android:hint="@string/ocupation"
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -49,21 +49,23 @@ class RegisterFragment : Fragment() {
     private fun init(){
         navController = findNavController()
 
-        val datePickerBuilder = MaterialDatePicker.Builder.datePicker()
-        datePickerBuilder.setTitleText("Selecciona una fecha")
-        datePickerBuilder.setInputMode(MaterialDatePicker.INPUT_MODE_TEXT)
-        val datePicker = datePickerBuilder.build()
+        var datePicker: MaterialDatePicker<Long>? = null
 
         binding.tilDate.editText?.setOnClickListener {
-            datePicker.show(childFragmentManager, "DATE_PICKER")
-        }
+            if (datePicker == null || !datePicker!!.isAdded) {
+                val datePickerBuilder = MaterialDatePicker.Builder.datePicker()
+                datePickerBuilder.setTitleText("Selecciona tu fecha de nacimiento")
+                datePicker = datePickerBuilder.build()
 
-        datePicker.addOnPositiveButtonClickListener {
-            // Aquí puedes manejar la fecha seleccionada
-            val dateString = datePicker.headerText
-            binding.etDate.setText(dateString)
-            binding.tilDate.error = null // Esto eliminará el mensaje de error
+                datePicker?.show(childFragmentManager, "DATE_PICKER")
 
+                datePicker?.addOnPositiveButtonClickListener {
+                    // Aquí puedes manejar la fecha seleccionada
+                    val dateString = datePicker?.headerText
+                    binding.etDate.setText(dateString)
+                    binding.tilDate.error = null // Esto eliminará el mensaje de error
+                }
+            }
         }
 
         val spannableString = SpannableString("Acepto los Términos y Condiciones de uso")
