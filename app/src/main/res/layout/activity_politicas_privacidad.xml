@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.PoliticasPrivacidad"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Privacidad de datos"
+            android:gravity="center"
+            android:layout_marginTop="60dp"
+            android:textSize="20dp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Introducción"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis diam, pretium viverra aliquet vitae, tempus nec nibh. Phasellus et sagittis metus."
+            android:textSize="18dp"
+            android:gravity="center">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Etiam elementum facilisis leo ut elementum. Pellentesque eu risus porttitor, eleifend metus ut, rutrum felis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer eu eros neque."
+            android:textSize="18dp"
+            android:gravity="center">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Nullam venenatis dapibus accumsan. Praesent viverra est eget orci eleifend ultrices. Mauris sed felis ut magna tempus dapibus facilisis ac leo. Quisque ac consectetur purus. Curabitur aliquam vitae diam quis molestie."
+            android:textSize="18dp"
+            android:gravity="center">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis diam, pretium viverra aliquet vitae, tempus nec nibh. Phasellus et sagittis metus. Etiam elementum facilisis leo ut elementum. Pellentesque eu risus porttitor, eleifend metus ut, rutrum felis."
+            android:textSize="18dp"
+            android:gravity="center">
+        </TextView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
