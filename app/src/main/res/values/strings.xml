@@ -61,4 +61,22 @@
     <string name="start">Empezar</string>
     <string name="duration">"Duración: "</string>
 
+    <!--Ventana de Perfil-->
+    <string name="Hello_user">¡Hola, User!</string>
+    <string name="Support">Soporte</string>
+    <string name="btn_update_profile">Cambiar datos personales</string>
+    <string name="terms_of_condition">Politicas de privacidad</string>
+    <string name="Help">Ayuda</string>
+    <string name="Comments">Comentarios</string>
+    <string name="btn_logout">Cerrar Sesión</string>
+    <string name="btn_delete_ac">Eliminar la cuenta</string>
+    <string name="delete">Eliminar</string>
+    <string name="comentarios">Tus comentarios son importantes para nosotros</string>
+    <string name="comentarios_message">¿Desea enviar un comentario?</string>
+    <string name="accept">Enviar</string>
+    <string name="decline">Cancelar</string>
+    <string name="delete_account">¿Desea eliminar su cuenta?</string>
+    <string name="delete_account_message">Esta acción no se puede deshacer</string>
+    <string name="hint_comentarios">Escribe aquí</string>
+
 </resources>

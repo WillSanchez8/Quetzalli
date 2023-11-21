@@ -6,11 +6,162 @@
     android:layout_height="match_parent"
     tools:context=".views.AvanceFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="30sp"
-        android:gravity="center"
-        android:text="@string/fragmento_avance" />
+        android:layout_marginBottom="400dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="160dp"
+            android:text="Su perfil de rendimiento"
+            android:textSize="20dp"
+            android:gravity="center">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="160dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis diam, pretium viverra aliquet vitae, tempus nec nibh. Phasellus et sagittis metus. Etiam elementum facilisis leo ut elementum."
+            android:textSize="18dp"
+            android:gravity="center">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="400dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="130sp"
+            android:layout_height="150sp"
+            android:src="@drawable/perfil"
+            android:layout_marginTop="70dp">
+        </com.google.android.material.imageview.ShapeableImageView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="325dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_margin="13dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prueba x"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="83sp"
+                        android:layout_height="55sp"
+                        android:src="@drawable/avance1">
+                    </com.google.android.material.imageview.ShapeableImageView>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="250sp"
+                        android:layout_height="55sp"
+                        android:src="@drawable/grafica"
+                        android:layout_marginLeft="1dp">
+                    </com.google.android.material.imageview.ShapeableImageView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card2"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_margin="13dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prueba y"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="83sp"
+                    android:layout_height="55sp"
+                    android:src="@drawable/avance2">
+                </com.google.android.material.imageview.ShapeableImageView>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card3"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_margin="13dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prueba z"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="83sp"
+                    android:layout_height="55sp"
+                    android:src="@drawable/avance3">
+                </com.google.android.material.imageview.ShapeableImageView>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,5 +19,30 @@
         android:id="@+id/perfil"
         android:name="com.example.quetzalli.views.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_perfil_to_dataPersonalFragment"
+            app:destination="@id/dataPersonalFragment" />
+        <action
+            android:id="@+id/action_perfil_to_helpFragment"
+            app:destination="@id/helpFragment" />
+        <action
+            android:id="@+id/action_perfil_to_policyFragment"
+            app:destination="@id/policyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dataPersonalFragment"
+        android:name="com.example.quetzalli.views.DataPersonalFragment"
+        android:label="fragment_data_personal"
+        tools:layout="@layout/fragment_data_personal" />
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.example.quetzalli.views.HelpFragment"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
+    <fragment
+        android:id="@+id/policyFragment"
+        android:name="com.example.quetzalli.views.PolicyFragment"
+        android:label="fragment_policy"
+        tools:layout="@layout/fragment_policy" />
 </navigation>
