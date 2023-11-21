@@ -78,5 +78,8 @@
     <string name="delete_account">¿Desea eliminar su cuenta?</string>
     <string name="delete_account_message">Esta acción no se puede deshacer</string>
     <string name="hint_comentarios">Escribe aquí</string>
+    <string name="page_title">""</string>
+    <string name="content_description_favorite">Icono de campana</string>
+    <string name="campana">Notificaciones</string>
 
 </resources>

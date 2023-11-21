@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.quetzalli.R
 import com.example.quetzalli.databinding.ActivityMainBinding
@@ -29,5 +30,11 @@ class MainActivity : AppCompatActivity() {
         //Configuración del bottom navigation
         binding.bottomNav.setupWithNavController(navController)
 
+        setSupportActionBar(binding.topAppBar)
+        setupActionBarWithNavController(navController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp()|| super.onSupportNavigateUp()
     }
 }
