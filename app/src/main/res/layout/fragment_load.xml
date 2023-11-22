@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.Load">
-
+    <!--Este es un comentario-->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/configuration"
         android:layout_width="100dp"
