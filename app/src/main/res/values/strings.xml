@@ -64,7 +64,6 @@
     <string name="descripcion_loading">Estamos procesando sus resultados con pruebas anteriores.</string>
     <string name="waiting">Espere</string>
 
-
     <!--Ventana de Perfil-->
     <string name="Hello_user">¡Hola, User!</string>
     <string name="Support">Soporte</string>
@@ -86,7 +85,6 @@
     <string name="content_description_favorite">Icono de campana</string>
     <string name="campana">Notificaciones</string>
 
-
     <!--labels-->
     <string name="Inicio">Entrena con Quetzalli</string>
     <string name="Avance">Avance</string>
@@ -94,8 +92,14 @@
     <string name="data_personal">Datos Personales</string>
     <string name="policy">Políticas de privacidad</string>
     <string name="notificaciones">Notificaciones</string>
+    <string name="pnotificaciones">Programar notificaciones</string>
+
+    <!--Ventana de Programar Notificaciones-->
     <string name="content_description_share">Icono de compartir</string>
     <string name="compartir">Icono de compartir</string>
-
+    <string name="date_program">Fecha del recordatorio</string>
+    <string name="time_program">Hora del recordatorio</string>
+    <string name="selected_time">%1$s:%2$s</string>
+    <string name="program">Guardar</string>
 
 </resources>

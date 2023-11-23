@@ -49,5 +49,14 @@
         android:id="@+id/notificacionesFragment"
         android:name="com.example.quetzalli.views.NotificacionesFragment"
         android:label="@string/notificaciones"
-        tools:layout="@layout/fragment_notificaciones" />
+        tools:layout="@layout/fragment_notificaciones" >
+        <action
+            android:id="@+id/action_notificacionesFragment_to_pnotificacionesFragment"
+            app:destination="@id/pnotificacionesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pnotificacionesFragment"
+        android:name="com.example.quetzalli.views.PnotificacionesFragment"
+        android:label="@string/pnotificaciones"
+        tools:layout="@layout/fragment_pnotificaciones" />
 </navigation>
