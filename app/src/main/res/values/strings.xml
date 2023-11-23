@@ -60,6 +60,10 @@
     <string name="instructions">A continuación mediremos sus puntos fuertes/débiles, esto nos permitirá pre-entrenar a la IA para determinar sus niveles y adecuar la realización de las pruebas.</string>
     <string name="start">Empezar</string>
     <string name="duration">"Duración: "</string>
+    <string name="detalles">Más detalles</string>
+    <string name="descripcion_loading">Estamos procesando sus resultados con pruebas anteriores.</string>
+    <string name="waiting">Espere</string>
+
 
     <!--Ventana de Perfil-->
     <string name="Hello_user">¡Hola, User!</string>

@@ -9,7 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="-196dp"
+        tools:layout_editor_absoluteY="16dp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card"
@@ -28,9 +30,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Rnotificaciones"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
                     android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -41,10 +43,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:textSize="16sp"
                         android:layout_weight="1"
                         android:gravity="start|top"
-                        android:text="@string/DesRecibir" />
+                        android:text="@string/DesRecibir"
+                        android:textSize="16sp" />
 
                     <com.google.android.material.materialswitch.MaterialSwitch
                         android:layout_width="wrap_content"
@@ -72,9 +74,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/Pnotificaciones"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textAppearance="?attr/textAppearanceTitleMedium" />
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -85,10 +87,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
-                        android:textSize="16sp"
                         android:layout_weight="1"
                         android:gravity="start|top"
-                        android:text="@string/DesProgramar" />
+                        android:text="@string/DesProgramar"
+                        android:textSize="16sp" />
 
                     <com.google.android.material.materialswitch.MaterialSwitch
                         android:layout_width="wrap_content"
