@@ -82,4 +82,16 @@
     <string name="content_description_favorite">Icono de campana</string>
     <string name="campana">Notificaciones</string>
 
+
+    <!--labels-->
+    <string name="Inicio">Entrena con Quetzalli</string>
+    <string name="Avance">Avance</string>
+    <string name="Perfil">Mi Perfil</string>
+    <string name="data_personal">Datos Personales</string>
+    <string name="policy">Políticas de privacidad</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="content_description_share">Icono de compartir</string>
+    <string name="compartir">Icono de compartir</string>
+
+
 </resources>

@@ -8,17 +8,17 @@
     <fragment
         android:id="@+id/sesion"
         android:name="com.example.quetzalli.views.SesionFragment"
-        android:label="fragment_sesion"
+        android:label="@string/Inicio"
         tools:layout="@layout/fragment_sesion" />
     <fragment
         android:id="@+id/avance"
         android:name="com.example.quetzalli.views.AvanceFragment"
-        android:label="fragment_avance"
+        android:label="@string/Avance"
         tools:layout="@layout/fragment_avance" />
     <fragment
         android:id="@+id/perfil"
         android:name="com.example.quetzalli.views.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="@string/Perfil"
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_perfil_to_dataPersonalFragment"
@@ -33,16 +33,21 @@
     <fragment
         android:id="@+id/dataPersonalFragment"
         android:name="com.example.quetzalli.views.DataPersonalFragment"
-        android:label="fragment_data_personal"
+        android:label="@string/data_personal"
         tools:layout="@layout/fragment_data_personal" />
     <fragment
         android:id="@+id/helpFragment"
         android:name="com.example.quetzalli.views.HelpFragment"
-        android:label="fragment_help"
+        android:label="@string/Help"
         tools:layout="@layout/fragment_help" />
     <fragment
         android:id="@+id/policyFragment"
         android:name="com.example.quetzalli.views.PolicyFragment"
-        android:label="fragment_policy"
+        android:label="@string/policy"
         tools:layout="@layout/fragment_policy" />
+    <fragment
+        android:id="@+id/notificacionesFragment"
+        android:name="com.example.quetzalli.views.NotificacionesFragment"
+        android:label="@string/notificaciones"
+        tools:layout="@layout/fragment_notificaciones" />
 </navigation>

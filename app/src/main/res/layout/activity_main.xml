@@ -6,27 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".views.MainActivity">
 
-
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/topBar"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/seed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
+            style="@style/Widget.App.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
             app:menu="@menu/tool_bar_menu"
-            app:title="@string/page_title" />
+            app:title="@string/page_title"
+            app:titleCentered="true" />
 
     </com.google.android.material.appbar.AppBarLayout>
-
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"

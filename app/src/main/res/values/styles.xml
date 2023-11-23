@@ -56,4 +56,17 @@
         <item name="android:textColor">@color/snackbar_text_color</item>
     </style>
 
+    <style name="Widget.App.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@color/md_theme_light_primary</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="titleTextAppearance">@style/TextAppearance.App.TitleLarge</item>
+    </style>
+
+    <style name="TextAppearance.App.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/sansation_light</item>
+        <item name="android:fontFamily">@font/sansation_light</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/md_theme_light_onPrimary</item>
+    </style>
+
 </resources>
