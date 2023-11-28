@@ -34,9 +34,7 @@ class NotificacionesFragment : Fragment() {
     }
 
     private fun registerEvents() {
-        binding.card2.setOnClickListener {
-            navController.navigate(R.id.action_notificacionesFragment_to_pnotificacionesFragment)
-        }
+
     }
 
 }

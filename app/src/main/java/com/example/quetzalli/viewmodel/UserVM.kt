@@ -47,6 +47,12 @@ class UserVM @Inject constructor(private val userRepo: UserRepository) : ViewMod
         return result
     }
 
+    fun logout() {
+        viewModelScope.launch {
+            userRepo.logout()
+        }
+    }
+
 }
 
 

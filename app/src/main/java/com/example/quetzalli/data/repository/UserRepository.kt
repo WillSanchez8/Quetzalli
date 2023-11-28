@@ -48,4 +48,8 @@ class UserRepository @Inject constructor(val auth: FirebaseAuth, private val db:
             FetchResult.Error(e)
         }
     }
+
+    fun logout() {
+        auth.signOut()
+    }
 }

@@ -1,22 +1,28 @@
 package com.example.quetzalli.views
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.quetzalli.R
 import com.example.quetzalli.databinding.FragmentProfileBinding
+import com.example.quetzalli.viewmodel.UserVM
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var navController: NavController
+    private val userVM : UserVM by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +80,14 @@ class ProfileFragment : Fragment() {
                     dialog.dismiss()
                 }
                 .show()
+        }
+
+        binding.btnCerrarSesion.setOnClickListener {
+            userVM.logout()
+
+            val intent = Intent(view.context, LoginActivity::class.java)
+            startActivity(intent)
+            requireActivity().finishAffinity()
         }
 
         binding.btnEliminar.setOnClickListener {
