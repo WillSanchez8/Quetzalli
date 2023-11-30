@@ -18,6 +18,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.quetzalli.R
+import com.example.quetzalli.data.models.User
+import com.example.quetzalli.data.repository.FetchResult
 import com.example.quetzalli.databinding.FragmentRegisterBinding
 import com.example.quetzalli.viewmodel.UserVM
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -29,7 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
-    private val userVM : UserVM by viewModels()
+    private val userVM: UserVM by viewModels()
     private lateinit var navController: NavController
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +48,7 @@ class RegisterFragment : Fragment() {
         registerEvents()
     }
 
-    private fun init(){
+    private fun init() {
         navController = findNavController()
 
         binding.tilDate.setEndIconOnClickListener {
@@ -113,14 +115,19 @@ class RegisterFragment : Fragment() {
         val genderId = binding.rgGenere.checkedRadioButtonId
         if (genderId == -1) {
             // Muestra un mensaje de error si ningún botón de radio está seleccionado
-            Snackbar.make(binding.root, "Por favor, selecciona un género", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, "Por favor, selecciona un género", Snackbar.LENGTH_SHORT)
+                .show()
             isValid = false
         }
 
         // Valida el checkbox de términos y condiciones
         if (!binding.cbTermsAndConditions.isChecked) {
             // Muestra un mensaje de error si el checkbox no está marcado
-            Snackbar.make(binding.root, "Debes aceptar los términos y condiciones", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(
+                binding.root,
+                "Debes aceptar los términos y condiciones",
+                Snackbar.LENGTH_SHORT
+            ).show()
             isValid = false
         }
 
@@ -129,37 +136,47 @@ class RegisterFragment : Fragment() {
 
     private fun registerEvents() {
         binding.btnRegister.setOnClickListener {
-            val name = binding.tilName.editText?.text.toString()
-            val date = binding.tilDate.editText?.text.toString()
-            val occupation = binding.tilOcupation.editText?.text.toString()
-
-            // Obtiene el género seleccionado en el RadioGroup
-            val selectedGenderId = binding.rgGenere.checkedRadioButtonId
-            val selectedGenderButton = view?.findViewById<RadioButton>(selectedGenderId)
-            val gender = selectedGenderButton?.text.toString()
-
             if (validateFields()) {
-                // llamada al método createUser del UserVM
-                userVM.createUser(name, gender, date, occupation)
+                val name = binding.tilName.editText?.text.toString()
+                val date = binding.tilDate.editText?.text.toString()
+                val occupation = binding.tilOcupation.editText?.text.toString()
+                val gender = when (binding.rgGenere.checkedRadioButtonId) {
+                    R.id.rd_male -> "Male"
+                    R.id.rd_female -> "Female"
+                    else -> ""
+                }
 
-                userVM.user.observe(viewLifecycleOwner) { user ->
-                    if (user != null) {
-                        // Guarda en SharedPreferences que el usuario ha iniciado sesión
-                        val sharedPreferences = activity?.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-                        sharedPreferences?.edit()?.apply {
-                            putBoolean("UserChoice", true)
-                            apply()
-                        }
+                val currentUser = userVM.getCurrentUser()
+                val user = User(
+                    id = currentUser?.uid,
+                    email = currentUser?.email,
+                    name = name,
+                    date = date,
+                    occupation = occupation,
+                    gender = gender
+                )
 
-                        // Muestra un Snackbar para informar al usuario que la cuenta se ha creado correctamente
-                        Snackbar.make(binding.root, "Cuenta creada correctamente.", Snackbar.LENGTH_LONG).show()
-                        // Navega a MainActivity
+                userVM.registerUser(user) // Llama a registerUser con el objeto User
+
+                userVM.registerResult.observe(viewLifecycleOwner) { result ->
+                    if (result is FetchResult.Success) {
+                        // Si el registro fue exitoso, navega a MainActivity
                         val intent = Intent(activity, MainActivity::class.java)
                         startActivity(intent)
                         activity?.finish()
+                    } else if (result is FetchResult.Error) {
+                        // Si el registro falló, muestra un mensaje de error
+                        Snackbar.make(
+                            binding.root,
+                            "Error al registrar el usuario, intente de nuevo más tarde",
+                            Snackbar.LENGTH_LONG
+                        ).show()
                     }
                 }
+
             }
         }
     }
+
+
 }

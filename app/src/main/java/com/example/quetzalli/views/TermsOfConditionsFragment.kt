@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.quetzalli.R
 import com.example.quetzalli.databinding.FragmentTermsOfConditionsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TermsOfConditionsFragment : Fragment() {
 
     private lateinit var binding: FragmentTermsOfConditionsBinding

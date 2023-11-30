@@ -102,12 +102,6 @@
                 android:layout_height="match_parent"
                 android:text="@string/male" />
 
-            <RadioButton
-                android:id="@+id/other"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/other" />
-
         </RadioGroup>
 
         <com.google.android.material.textfield.TextInputLayout

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.quetzalli.data.models.User
 import com.example.quetzalli.data.repository.FetchResult
 import com.example.quetzalli.data.repository.UserRepository
 import com.google.firebase.auth.FirebaseUser
@@ -13,66 +14,42 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserVM @Inject constructor(private val userRepo: UserRepository) : ViewModel() {
+    private val _signInResult = MutableLiveData<FetchResult<FirebaseUser>>() //Es una variable mutable
+    val signInResult: LiveData<FetchResult<FirebaseUser>> get() = _signInResult //Es una variable de solo lectura
 
-    // LiveData to observe the user
-    private val _user = MutableLiveData<FirebaseUser?>()
-    val user: MutableLiveData<FirebaseUser?> get() = _user
-    private val _loginError = MutableLiveData<String>()
+    private val _registerResult = MutableLiveData<FetchResult<Void?>>() //Es una variable mutable
+    val registerResult: LiveData<FetchResult<Void?>> get() = _registerResult //Es una variable de solo lectura
 
-    // LiveData to observe the result of the user check
-    private val _userCheckResult = MutableLiveData<Boolean>()
-    val userCheckResult: LiveData<Boolean> get() = _userCheckResult
-
-    // Function to login with Google
-    fun loginWithGoogle(idToken: String) {
+    fun signInWithGoogle(idToken: String) {
         viewModelScope.launch {
-            when (val result = userRepo.loginWithGoogle(idToken)) {
-                is FetchResult.Success -> _user.value = result.data
-                is FetchResult.Error -> {
-                    _loginError.value = "Error al iniciar sesión, por favor regístrese de nuevo."
-                }
-            }
+            val result = userRepo.signInWithGoogle(idToken)
+            _signInResult.value = result
         }
     }
 
-    // Function to create a new user
-    fun createUser(name: String, gender: String, date: String, occupation: String) {
+    fun registerUser(user: User) {
         viewModelScope.launch {
-            when (val result = userRepo.createUser(name, gender, date, occupation)) {
-                is FetchResult.Success -> _user.value = result.data
-                is FetchResult.Error -> {
-                    _loginError.value = "Error al crear la cuenta, por favor intente de nuevo."
-                }
-            }
+            val result = userRepo.registerUser(user)
+            _registerResult.value = result
         }
     }
 
-    // Function to check if the user is logged in
-    fun checkIfUserExists(uid: String) {
-        viewModelScope.launch {
-            when (val result = userRepo.getUserById(uid)) {
-                is FetchResult.Success -> {
-                    _userCheckResult.value = result.data != null
-                }
-                is FetchResult.Error -> {
-                    _loginError.value = "Error al verificar el usuario, por favor intente de nuevo."
-                }
-            }
-        }
+    fun getCurrentUser(): FirebaseUser? {
+        return userRepo.auth.currentUser
     }
 
-    // Function to get user data
-    fun getUserData(uid: String) {
+    // Función para obtener un usuario por su id
+    fun getUserById(id: String): LiveData<FetchResult<User?>> {
+        val result = MutableLiveData<FetchResult<User?>>()
         viewModelScope.launch {
-            when (val result = userRepo.getUserById(uid)) {
-                is FetchResult.Success -> {
-                    _user.value = result.data as FirebaseUser?
-                }
-                is FetchResult.Error -> {
-                    _loginError.value = "Error, por favor intente de nuevo."
-                }
-            }
+            result.value = userRepo.getUserById(id)
         }
+        return result
     }
+
 }
+
+
+
+
 
