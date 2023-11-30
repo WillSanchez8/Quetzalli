@@ -60,5 +60,19 @@ class UserVM @Inject constructor(private val userRepo: UserRepository) : ViewMod
             }
         }
     }
+
+    // Function to get user data
+    fun getUserData(uid: String) {
+        viewModelScope.launch {
+            when (val result = userRepo.getUserById(uid)) {
+                is FetchResult.Success -> {
+                    _user.value = result.data as FirebaseUser?
+                }
+                is FetchResult.Error -> {
+                    _loginError.value = "Error, por favor intente de nuevo."
+                }
+            }
+        }
+    }
 }
 
