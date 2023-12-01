@@ -59,11 +59,6 @@ class MainActivity : AppCompatActivity() {
                     navController.navigate(R.id.notificacionesFragment)
                     true
                 }
-                R.id.share -> {
-                    val bitmap = takeScreenshot(binding.root)
-                    shareBitmap(bitmap, this)
-                    true
-                }
                 else -> false
             }
         }
@@ -106,43 +101,20 @@ class MainActivity : AppCompatActivity() {
         when (navController.currentDestination?.id) {
             R.id.sesion -> {
                 menu.findItem(R.id.notification).isVisible = true
-                menu.findItem(R.id.share).isVisible = false
             }
             R.id.avance -> {
-                menu.findItem(R.id.notification).isVisible = false
-                menu.findItem(R.id.share).isVisible = true
+                menu.findItem(R.id.notification).isVisible = true
+            }
+            R.id.perfil -> {
+                menu.findItem(R.id.notification).isVisible = true
             }
             else -> {
                 menu.findItem(R.id.notification).isVisible = false
-                menu.findItem(R.id.share).isVisible = false
             }
         }
         return true
 
     }
-
-    fun takeScreenshot(view: View): Bitmap {
-        val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
-        val canvas = Canvas(bitmap)
-        view.draw(canvas)
-        return bitmap
-    }
-
-    fun shareBitmap(bitmap: Bitmap, context: Context) {
-        val file = File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "screenshot.png")
-        val fileOutputStream = FileOutputStream(file)
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
-        fileOutputStream.flush()
-        fileOutputStream.close()
-        val fileUri = FileProvider.getUriForFile(context, "com.example.quetzalli.fileprovider", file)
-        val intent = Intent().apply {
-            action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_STREAM, fileUri)
-            type = "image/png"
-        }
-        context.startActivity(Intent.createChooser(intent, R.string.share_to.toString()))
-    }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.tool_bar_menu, menu)

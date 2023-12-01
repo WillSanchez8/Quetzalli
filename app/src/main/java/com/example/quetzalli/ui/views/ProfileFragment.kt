@@ -56,6 +56,23 @@ class ProfileFragment : Fragment() {
 
         Glide.with(this).load(photoURL).into(binding.ivProfile)
 
+        userVM.getUserName().observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is FetchResult.Success -> {
+                    binding.tvGreeting.text = getString(R.string.Hello_user, result.data)
+                }
+                is FetchResult.Error -> {
+                    // Hubo un error al obtener el nombre del usuario
+                    // Muestra un Snackbar con un mensaje de error
+                    Snackbar.make(
+                        binding.root,
+                        "Ha ocurrido un error mientras se obtenía tu nombre, intenta de nuevo más tarde",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+
     }
 
     private fun registerEvents(){

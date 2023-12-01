@@ -8,11 +8,4 @@
         android:contentDescription="@string/content_description_favorite"
         app:showAsAction="ifRoom" />
 
-    <item
-        android:id="@+id/share"
-        android:icon="@drawable/ic_share"
-        android:title="@string/compartir"
-        android:contentDescription="@string/content_description_share"
-        app:showAsAction="ifRoom" />
-
 </menu>

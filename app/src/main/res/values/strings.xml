@@ -65,7 +65,7 @@
     <string name="waiting">Espere</string>
 
     <!--Ventana de Perfil-->
-    <string name="Hello_user">¡Hola, User!</string>
+    <string name="Hello_user">¡Hola, %1$s!</string>
     <string name="Support">Soporte</string>
     <string name="btn_update_profile">Cambiar datos personales</string>
     <string name="terms_of_condition">Politicas de privacidad</string>
