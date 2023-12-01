@@ -17,7 +17,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/txt_question_name"
+                android:id="@+id/tvQuestion"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -25,13 +25,13 @@
                 android:text="@string/question_name"
                 android:textAppearance="?attr/textAppearanceTitleMedium" />
 
-            <ImageButton
+            <ImageView
+                android:id="@+id/ivExpand"
                 android:layout_width="25dp"
                 android:layout_height="36dp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="10dp"
-                android:background="@null"
-                app:srcCompat="@drawable/ic_expand"
+                android:src="@drawable/ic_expand"
                 android:contentDescription="@string/ic_expand" />
         </LinearLayout>
 
@@ -43,7 +43,7 @@
             android:visibility="gone">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/txt_question_description"
+                android:id="@+id/tvAnswer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"

@@ -1,8 +1,15 @@
-package com.example.quetzalli.views
+package com.example.quetzalli.ui.views
 
+import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.view.Menu
+import android.view.View
+import androidx.core.content.FileProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -12,6 +19,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.quetzalli.R
 import com.example.quetzalli.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
+import java.io.FileOutputStream
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -48,6 +57,11 @@ class MainActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.notification -> {
                     navController.navigate(R.id.notificacionesFragment)
+                    true
+                }
+                R.id.share -> {
+                    val bitmap = takeScreenshot(binding.root)
+                    shareBitmap(bitmap, this)
                     true
                 }
                 else -> false
@@ -106,6 +120,29 @@ class MainActivity : AppCompatActivity() {
         return true
 
     }
+
+    fun takeScreenshot(view: View): Bitmap {
+        val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        view.draw(canvas)
+        return bitmap
+    }
+
+    fun shareBitmap(bitmap: Bitmap, context: Context) {
+        val file = File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "screenshot.png")
+        val fileOutputStream = FileOutputStream(file)
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, fileOutputStream)
+        fileOutputStream.flush()
+        fileOutputStream.close()
+        val fileUri = FileProvider.getUriForFile(context, "com.example.quetzalli.fileprovider", file)
+        val intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_STREAM, fileUri)
+            type = "image/png"
+        }
+        context.startActivity(Intent.createChooser(intent, R.string.share_to.toString()))
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.tool_bar_menu, menu)

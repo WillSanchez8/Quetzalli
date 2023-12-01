@@ -10,4 +10,3 @@ data class User(
     var date: String? = null,
     var occupation: String? = null
 ) : Serializable
-

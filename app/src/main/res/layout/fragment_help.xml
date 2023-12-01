@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".views.HelpFragment">
+    tools:context=".ui.views.HelpFragment">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_title_help"

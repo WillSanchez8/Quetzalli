@@ -24,7 +24,7 @@ class UserRepository @Inject constructor(val auth: FirebaseAuth, private val db:
     //Función para registrar un usuario
     suspend fun registerUser(user: User): FetchResult<Void?> {
         return try {
-            val documentReference = db.collection("users").document(user.id!!)
+            val documentReference = db.collection("users").document()
             documentReference.set(user).await()
             FetchResult.Success(null)
         } catch (e: Exception) {
@@ -39,11 +39,21 @@ class UserRepository @Inject constructor(val auth: FirebaseAuth, private val db:
             if (documentSnapshot.exists()) {
                 // El usuario existe, devuelve el usuario
                 val user = documentSnapshot.toObject(User::class.java)
+                user?.id = documentSnapshot.id
                 FetchResult.Success(user)
             } else {
                 // El usuario no existe, devuelve null
                 FetchResult.Success(null)
             }
+        } catch (e: Exception) {
+            FetchResult.Error(e)
+        }
+    }
+
+    suspend fun deleteUser(): FetchResult<Void?> {
+        return try {
+            auth.currentUser?.delete()?.await()
+            FetchResult.Success(null)
         } catch (e: Exception) {
             FetchResult.Error(e)
         }

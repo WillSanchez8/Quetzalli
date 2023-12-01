@@ -1,70 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.PolicyFragment">
+    tools:context=".ui.views.PolicyFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvIntroductory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Privacidad de datos"
-            android:gravity="center"
-            android:layout_marginTop="60dp"
-            android:textSize="20dp">
+            android:layout_margin="20dp"
+            android:fontFamily="@font/robotoslab_bold"
+            android:text="@string/Introductory"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </TextView>
-
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvPolicy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Introducción"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            android:textSize="20dp">
+            android:layout_margin="20dp"
+            android:fontFamily="@font/nunitosans_regular"
+            android:text="@string/Policy"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvIntroductory" />
 
-        </TextView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis diam, pretium viverra aliquet vitae, tempus nec nibh. Phasellus et sagittis metus."
-            android:textSize="18dp"
-            android:gravity="center">
-        </TextView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Etiam elementum facilisis leo ut elementum. Pellentesque eu risus porttitor, eleifend metus ut, rutrum felis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer eu eros neque."
-            android:textSize="18dp"
-            android:gravity="center">
-        </TextView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Nullam venenatis dapibus accumsan. Praesent viverra est eget orci eleifend ultrices. Mauris sed felis ut magna tempus dapibus facilisis ac leo. Quisque ac consectetur purus. Curabitur aliquam vitae diam quis molestie."
-            android:textSize="18dp"
-            android:gravity="center">
-        </TextView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis diam, pretium viverra aliquet vitae, tempus nec nibh. Phasellus et sagittis metus. Etiam elementum facilisis leo ut elementum. Pellentesque eu risus porttitor, eleifend metus ut, rutrum felis."
-            android:textSize="18dp"
-            android:gravity="center">
-        </TextView>
-
-    </LinearLayout>
-</FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

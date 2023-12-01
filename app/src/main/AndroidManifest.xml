@@ -17,11 +17,21 @@
         android:theme="@style/Theme.Quetzalli"
         tools:targetApi="31">
         <receiver android:name=".receivers.ReminderBroadcast" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.quetzalli.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
         <activity
-            android:name=".views.LoginActivity"
+            android:name=".ui.views.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".views.IniActivity"
+            android:name=".ui.views.IniActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +39,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".views.MainActivity"
+            android:name=".ui.views.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
         </activity>
