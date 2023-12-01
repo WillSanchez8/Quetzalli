@@ -71,7 +71,7 @@ class UserRepository @Inject constructor(val auth: FirebaseAuth, private val db:
                 FetchResult.Success(user?.name)
             } else {
                 // El usuario no existe, devuelve null
-                FetchResult.Success(null)
+                FetchResult.Success("user")
             }
         } catch (e: Exception) {
             FetchResult.Error(e)
