@@ -24,7 +24,7 @@ class UserRepository @Inject constructor(val auth: FirebaseAuth, private val db:
     //Función para registrar un usuario
     suspend fun registerUser(user: User): FetchResult<Void?> {
         return try {
-            val documentReference = db.collection("users").document()
+            val documentReference = db.collection("users").document(user.id!!)
             documentReference.set(user).await()
             FetchResult.Success(null)
         } catch (e: Exception) {
