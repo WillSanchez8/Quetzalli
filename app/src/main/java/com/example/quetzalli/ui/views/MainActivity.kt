@@ -1,8 +1,15 @@
-package com.example.quetzalli.views
+package com.example.quetzalli.ui.views
 
+import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.view.Menu
+import android.view.View
+import androidx.core.content.FileProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -12,6 +19,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.quetzalli.R
 import com.example.quetzalli.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
+import java.io.FileOutputStream
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -92,15 +101,15 @@ class MainActivity : AppCompatActivity() {
         when (navController.currentDestination?.id) {
             R.id.sesion -> {
                 menu.findItem(R.id.notification).isVisible = true
-                menu.findItem(R.id.share).isVisible = false
             }
             R.id.avance -> {
-                menu.findItem(R.id.notification).isVisible = false
-                menu.findItem(R.id.share).isVisible = true
+                menu.findItem(R.id.notification).isVisible = true
+            }
+            R.id.perfil -> {
+                menu.findItem(R.id.notification).isVisible = true
             }
             else -> {
                 menu.findItem(R.id.notification).isVisible = false
-                menu.findItem(R.id.share).isVisible = false
             }
         }
         return true

@@ -46,7 +46,29 @@ class UserVM @Inject constructor(private val userRepo: UserRepository) : ViewMod
         }
         return result
     }
+    // Función para eliminar un usuario
+    fun deleteUser(): LiveData<FetchResult<Void?>> {
+        val result = MutableLiveData<FetchResult<Void?>>()
+        viewModelScope.launch {
+            result.value = userRepo.deleteUser()
+        }
+        return result
+    }
 
+    // Función para obtener el nombre del usuario
+    fun getUserName(): LiveData<FetchResult<String?>> {
+        val result = MutableLiveData<FetchResult<String?>>()
+        viewModelScope.launch {
+            result.value = userRepo.getUserName()
+        }
+        return result
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            userRepo.logout()
+        }
+    }
 }
 
 

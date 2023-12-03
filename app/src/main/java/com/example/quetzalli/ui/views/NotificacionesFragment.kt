@@ -1,4 +1,4 @@
-package com.example.quetzalli.views
+package com.example.quetzalli.ui.views
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -34,9 +34,7 @@ class NotificacionesFragment : Fragment() {
     }
 
     private fun registerEvents() {
-        binding.card2.setOnClickListener {
-            navController.navigate(R.id.action_notificacionesFragment_to_pnotificacionesFragment)
-        }
+
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.quetzalli.views
+package com.example.quetzalli.ui.views
 
 import android.content.Context
 import android.content.Intent
