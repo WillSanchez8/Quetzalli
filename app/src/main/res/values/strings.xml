@@ -108,5 +108,10 @@
 
     <!--Compartir-->
     <string name="share_to">"Compartir imagen usando"</string>
+    <string name="OptionA">a)</string>
+    <string name="OptionB">b)</string>
+    <string name="OptionC">c)</string>
+    <string name="OptionD">d)</string>
+    <string name="OptionE">e)</string>
 
 </resources>

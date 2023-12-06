@@ -9,7 +9,11 @@
         android:id="@+id/sesion"
         android:name="com.example.quetzalli.ui.views.SesionFragment"
         android:label="@string/Inicio"
-        tools:layout="@layout/fragment_sesion" />
+        tools:layout="@layout/fragment_sesion" >
+        <action
+            android:id="@+id/action_sesion_to_memoryTest"
+            app:destination="@id/memoryTest" />
+    </fragment>
     <fragment
         android:id="@+id/avance"
         android:name="com.example.quetzalli.ui.views.AvanceFragment"
@@ -59,4 +63,9 @@
         android:name="com.example.quetzalli.ui.views.PnotificacionesFragment"
         android:label="@string/pnotificaciones"
         tools:layout="@layout/fragment_pnotificaciones" />
+    <fragment
+        android:id="@+id/memoryTest"
+        android:name="com.example.quetzalli.MemoryTest"
+        android:label="fragment_memory_test"
+        tools:layout="@layout/fragment_memory_test" />
 </navigation>

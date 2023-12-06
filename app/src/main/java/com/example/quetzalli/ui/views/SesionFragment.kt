@@ -5,12 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.example.quetzalli.R
 import com.example.quetzalli.databinding.FragmentSesionBinding
 
 class SesionFragment : Fragment() {
 
     private lateinit var binding: FragmentSesionBinding
+    private lateinit var navController: NavController
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,11 +30,13 @@ class SesionFragment : Fragment() {
     }
 
     private fun init(){
-
+        navController = findNavController()
     }
 
     private fun registerEvents(){
-
+        binding.btnStart.setOnClickListener {
+            navController.navigate(R.id.action_sesion_to_memoryTest)
+        }
     }
 
 }
