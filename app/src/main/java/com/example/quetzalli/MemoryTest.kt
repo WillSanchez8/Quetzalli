@@ -10,7 +10,9 @@ import com.bumptech.glide.Glide
 import com.example.quetzalli.databinding.FragmentMemoryTestBinding
 import com.example.quetzalli.viewmodel.MemoryVM
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MemoryTest : Fragment() {
 
     private lateinit var binding: FragmentMemoryTestBinding

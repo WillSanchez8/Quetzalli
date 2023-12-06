@@ -35,7 +35,7 @@ class SesionFragment : Fragment() {
 
     private fun registerEvents(){
         binding.btnStart.setOnClickListener {
-            navController.navigate(R.id.action_sesion_to_memoryTest)
+            navController.navigate(R.id.action_sesion_to_countdown)
         }
     }
 
