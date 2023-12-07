@@ -61,7 +61,7 @@
     <string name="start">Empezar</string>
     <string name="duration">"Duración: "</string>
     <string name="detalles">Más detalles</string>
-    <string name="descripcion_loading">Estamos procesando sus resultados con pruebas anteriores.</string>
+    <string name="descripcion_loading">Estamos procesando sus resultados</string>
     <string name="waiting">Espere</string>
 
     <!--Ventana de Perfil-->
@@ -95,7 +95,7 @@
     <string name="pnotificaciones">Programar notificaciones</string>
 
     <!--Ventana de Programar Notificaciones-->
-    <string name="content_description_share">Icono de compartir</string>
+    <string name="ic_test">Icono de test</string>
     <string name="compartir">Icono de compartir</string>
     <string name="date_program">Fecha del recordatorio</string>
     <string name="time_program">Hora del recordatorio</string>
@@ -116,5 +116,6 @@
     <string name="test_memory">Memoria</string>
     <string name="Countdown">3</string>
     <string name="right_now">¡Comienza!</string>
+    <string name="InstructionsMem">Seleccione la respuesta que considere correcta:</string>
 
 </resources>

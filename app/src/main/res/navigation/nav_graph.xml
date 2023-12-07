@@ -74,7 +74,20 @@
     </fragment>
     <fragment
         android:id="@+id/memoryTest"
-        android:name="com.example.quetzalli.MemoryTest"
+        android:name="com.example.quetzalli.ui.views.MemoryTest"
         android:label="@string/test_memory"
-        tools:layout="@layout/fragment_memory_test" />
+        tools:layout="@layout/fragment_memory_test" >
+        <action
+            android:id="@+id/action_memoryTest_to_load"
+            app:destination="@id/load" />
+    </fragment>
+    <fragment
+        android:id="@+id/load"
+        android:name="com.example.quetzalli.ui.views.Load"
+        android:label="fragment_load"
+        tools:layout="@layout/fragment_load" >
+        <action
+            android:id="@+id/action_load_to_sesion"
+            app:destination="@id/sesion" />
+    </fragment>
 </navigation>

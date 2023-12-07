@@ -5,7 +5,6 @@ import java.io.Serializable
 data class Level(
     val answer: String? = null,
     val imgSequence: String? = null,
-    val score: Int? = null
 ):Serializable
 
 data class SequenceGraph(
@@ -13,4 +12,11 @@ data class SequenceGraph(
     val levels: List<Level>? = null,
     val number_sequence: Int? = null
 ):Serializable
+
+data class TestMemory(
+    val userId: String,
+    val scoreTotal: Int,
+    val totalTime: String
+):Serializable
+
 
