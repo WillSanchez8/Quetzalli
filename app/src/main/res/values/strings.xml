@@ -117,5 +117,9 @@
     <string name="Countdown">3</string>
     <string name="right_now">¡Comienza!</string>
     <string name="InstructionsMem">Seleccione la respuesta que considere correcta:</string>
+    <string name="ingresaUbicacion">Ingrese la fecha</string>
+    <string name="enviarUbicacion">Enviar</string>
+    <string name="ingresarRespuesta">Ingrese su respuesta</string>
+    <string name="siguienteCalculo">Siguiente</string>
 
 </resources>
