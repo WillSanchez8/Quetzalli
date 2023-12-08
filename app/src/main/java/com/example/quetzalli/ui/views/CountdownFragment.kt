@@ -2,6 +2,7 @@ package com.example.quetzalli.ui.views
 
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.quetzalli.R
 import com.example.quetzalli.databinding.FragmentCountdownBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class CountdownFragment : Fragment() {
 
@@ -49,12 +51,29 @@ class CountdownFragment : Fragment() {
             }
 
             override fun onFinish() {
-                navController.navigate(R.id.action_countdown_to_memoryTest)
+                val completedTest = arguments?.getString("completedTest")
+                Log.d("completedTest", completedTest.toString())
+                when (completedTest) {
+                    "testmemory" -> navController.navigate(R.id.action_countdown_to_ubicacionTest)
+                    "testubicacion" -> navController.navigate(R.id.action_countdown_to_calculoTest)
+                    "testcalculation" -> {
+                        // Todas las pruebas se han completado, muestra un AlertDialog
+                        MaterialAlertDialogBuilder(requireContext())
+                            .setTitle("Pruebas completadas")
+                            .setMessage("Has respondido todas las pruebas por hoy. Continúa el día de mañana.")
+                            .setPositiveButton("OK") { dialog, _ ->
+                                navController.navigate(R.id.sesion)
+                            }
+                            .show()
+                    }
+
+                    else -> navController.navigate(R.id.action_countdown_to_memoryTest)
+                }
             }
         }
-
         countDownTimer.start()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

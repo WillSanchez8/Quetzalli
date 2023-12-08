@@ -13,10 +13,3 @@ data class SequenceGraph(
     val number_sequence: Int? = null
 ):Serializable
 
-data class TestMemory(
-    val userId: String,
-    val scoreTotal: Int,
-    val totalTime: String
-):Serializable
-
-

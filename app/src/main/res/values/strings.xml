@@ -106,7 +106,7 @@
     <string name="avance_title">Su perfil de rendimiento</string>
     <string name="avance_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis diam, pretium viverra aliquet vitae, tempus nec nibh. Phasellus et sagittis metus. Etiam elementum facilisis leo ut elementum.</string>
 
-    <!--Compartir-->
+    <!--Ventanas de Tests-->
     <string name="share_to">"Compartir imagen usando"</string>
     <string name="OptionA">a)</string>
     <string name="OptionB">b)</string>
@@ -117,9 +117,10 @@
     <string name="Countdown">3</string>
     <string name="right_now">¡Comienza!</string>
     <string name="InstructionsMem">Seleccione la respuesta que considere correcta:</string>
-    <string name="ingresaUbicacion">Ingrese la fecha</string>
+    <string name="ingresaUbicacion">Ingrese la fecha de hoy</string>
     <string name="enviarUbicacion">Enviar</string>
     <string name="ingresarRespuesta">Ingrese su respuesta</string>
     <string name="siguienteCalculo">Siguiente</string>
+    <string name="format_date">00/00/0000</string>
 
 </resources>

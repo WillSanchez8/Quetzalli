@@ -35,8 +35,13 @@ class SesionFragment : Fragment() {
 
     private fun registerEvents(){
         binding.btnStart.setOnClickListener {
-            navController.navigate(R.id.action_sesion_to_countdown)
+            val completedTest = arguments?.getString("completedTest")
+            val bundle = Bundle().apply {
+                putString("completedTest", completedTest)
+            }
+            navController.navigate(R.id.action_sesion_to_countdown, bundle)
         }
     }
+
 
 }

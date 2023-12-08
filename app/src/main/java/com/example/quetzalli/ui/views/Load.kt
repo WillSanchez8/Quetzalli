@@ -11,8 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.quetzalli.R
 import com.example.quetzalli.databinding.FragmentLoadBinding
-import com.example.quetzalli.viewmodel.MemoryVM
-import com.example.quetzalli.viewmodel.UserVM
+import com.example.quetzalli.viewmodel.TestVM
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class Load : Fragment() {
     private lateinit var binding: FragmentLoadBinding
     private lateinit var navController: NavController
-    private val memoryVM: MemoryVM by viewModels()
+    private val testVM : TestVM by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,17 +33,28 @@ class Load : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val testType = arguments?.getString("testType")
         val userId = arguments?.getString("userId")
         val scoreTotal = arguments?.getInt("scoreTotal")
         val totalTime = arguments?.getString("totalTime")
 
-        val isUploadSuccessful = memoryVM.addTestMemoryData(userId!!, scoreTotal!!, totalTime!!)
+        val isUploadSuccessful = when (testType) {
+            "testubicacion" -> testVM.addTestData("testspace", userId!!, scoreTotal!!, totalTime!!)
+            "testmemory" -> testVM.addTestData("testmemory", userId!!, scoreTotal!!, totalTime!!)
+            "testcalculation" -> testVM.addTestData("testcalculation", userId!!, scoreTotal!!, totalTime!!)
+            else -> throw IllegalArgumentException("Tipo de prueba desconocido: $testType")
+        }
+
         isUploadSuccessful.observe(viewLifecycleOwner) { success ->
             if (success) {
-                findNavController().navigate(R.id.action_load_to_sesion)
+                val bundle = Bundle().apply {
+                    putString("completedTest", testType)
+                }
+                // Navega de nuevo al fragmento SesionFragment si la subida de datos fue exitosa
+                navController.navigate(R.id.action_load_to_sesion, bundle)
             } else {
-                Snackbar.make(binding.root, "Error al subir los datos", Snackbar.LENGTH_SHORT)
-                    .show()
+                // Muestra un mensaje de error si la subida de datos falla
+                Snackbar.make(binding.root, "Error al subir los datos", Snackbar.LENGTH_SHORT).show()
             }
         }
 

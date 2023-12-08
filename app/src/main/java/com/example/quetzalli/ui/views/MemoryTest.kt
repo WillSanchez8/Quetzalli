@@ -100,6 +100,7 @@ class MemoryTest : Fragment() {
                         putString("userId", userVm.getCurrentUser()?.uid)
                         putInt("scoreTotal", scoreTotal)
                         putString("totalTime", totalTimeStr)
+                        putString("testType", "testmemory")
                     }
                     navController.navigate(R.id.action_memoryTest_to_load, bundle)
                 }

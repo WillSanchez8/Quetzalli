@@ -1,60 +1,103 @@
 package com.example.quetzalli.ui.views
 
 import android.os.Bundle
+import android.os.SystemClock
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.example.quetzalli.R
+import com.example.quetzalli.databinding.FragmentUbicacionTestBinding
+import com.example.quetzalli.viewmodel.UserVM
+import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [UbicacionTest.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class UbicacionTest : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentUbicacionTestBinding
+    private lateinit var navController: NavController
+    private var scoreTotal = 0
+    private var startTime: Long = 0
+    private val userVm: UserVM by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ubicacion_test, container, false)
+    ): View {
+        binding = FragmentUbicacionTestBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment UbicacionTest.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            UbicacionTest().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        init()
+        registerEvents()
+
+        //Inicia el cronometro
+        startTime = SystemClock.elapsedRealtime()
+    }
+
+    private fun init() {
+        navController = findNavController()
+        binding.etUbicacion.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().isEmpty()) {
+                    binding.tilUbicacion.error = "Campo obligatorio"
+                } else {
+                    binding.tilUbicacion.error = null // Quita el mensaje de error
                 }
             }
+        })
+
     }
+
+
+    private fun registerEvents() {
+
+        binding.btnEnviar.setOnClickListener {
+            val dateString = binding.etUbicacion.text.toString()
+            if (dateString.isEmpty()) {
+                binding.tilUbicacion.error = "Campo obligatorio"
+                return@setOnClickListener
+            }
+
+            val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ROOT)
+            val currentDate = sdf.format(Date())
+            scoreTotal = if (dateString == currentDate) {
+                100
+            } else {
+                0
+            }
+
+            // Calcula el tiempo total en milisegundos
+            val totalTimeMillis = SystemClock.elapsedRealtime() - startTime
+            // Convierte a segundos totales
+            val totalTimeSec = totalTimeMillis / 1000
+            // Calcula los minutos y segundos
+            val minutes = totalTimeSec / 60
+            val seconds = totalTimeSec % 60
+            // Formatea el tiempo en el formato MM:SS
+            val totalTimeStr = String.format("%02d:%02d", minutes, seconds)
+            val bundle = Bundle().apply {
+                putString("userId", userVm.getCurrentUser()?.uid)
+                putInt("scoreTotal", scoreTotal)
+                putString("totalTime", totalTimeStr)
+                putString("testType", "testubicacion")
+            }
+            navController.navigate(R.id.action_ubicacionTest_to_load, bundle)
+        }
+    }
+
 }
