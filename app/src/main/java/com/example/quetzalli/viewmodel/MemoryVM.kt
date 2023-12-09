@@ -24,7 +24,7 @@ class MemoryVM @Inject constructor(private val memRepo: MemoryRepository) : View
         if (data is FetchResult.Success) {
             emit(data.data)
         } else if (data is FetchResult.Error) {
-            _error.postValue(data.exception.message ?: "An unknown error occurred")
+            _error.postValue(data.exception.message ?: "Error al obtener la secuencia")
             emit(emptyList())
         }
     }

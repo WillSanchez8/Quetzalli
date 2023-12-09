@@ -11,12 +11,11 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.quetzalli.R
-import com.example.quetzalli.data.models.Operations
+import com.example.quetzalli.data.models.Operation
 import com.example.quetzalli.databinding.FragmentCalculoTestBinding
 import com.example.quetzalli.viewmodel.CalculationVM
 import com.example.quetzalli.viewmodel.UserVM
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.random.Random
 
 @AndroidEntryPoint
 class CalculoTest : Fragment() {
@@ -27,8 +26,7 @@ class CalculoTest : Fragment() {
     private var scoreTotal = 0
     private var startTime: Long = 0
     private val userVm: UserVM by viewModels()
-    private var operations = listOf<Operations>()
-    private var selectedOperations = listOf<Operations>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,47 +45,42 @@ class CalculoTest : Fragment() {
         startTime = SystemClock.elapsedRealtime()
     }
 
+    private var currentOperationIndex = 0
+    private var operationsSubList: List<Operation>? = null
+
     private fun init() {
         navController = findNavController()
-        calculationVM.operations.observe(viewLifecycleOwner) { ops ->
-            operations = ops
-            val randomIndices = List(4) { Random.nextInt(operations.size) }
-            selectedOperations = randomIndices.map { operations[it] }
-            // Carga la primera imagen
-            Glide.with(binding.root)
-                .load(selectedOperations[currentOperationIndex].operations?.get(0)?.img)
-                .into(binding.ivOperacion)
+        calculationVM.operations.observe(viewLifecycleOwner) { operations ->
+            operations?.let {
+                operationsSubList = it.flatMap { it.operations ?: emptyList() }.shuffled().take(4)
+                operationsSubList?.let { subList ->
+                    Glide.with(binding.root)
+                        .load(subList[currentOperationIndex].img)
+                        .into(binding.ivOperacion)
+                }
+            }
         }
     }
-
-    private var currentOperationIndex = 0
 
     private fun registerEvents() {
         binding.btnSiguiente.setOnClickListener {
             val userAnswer = binding.editRespuesta.text.toString()
             if (userAnswer.isEmpty()) {
-                // Muestra un mensaje de error si el campo de texto está vacío
-                binding.editRespuesta.error = "Debes ingresar una respuesta"
-            } else {
-                // Comprueba si la respuesta del usuario es correcta
-                val correctAnswer = selectedOperations[currentOperationIndex].operations?.get(0)?.answer
-                if (correctAnswer != null && userAnswer.toInt() == correctAnswer) {
-                    scoreTotal += 25
-                }
+                binding.tilAnswer.error = "Campo obligatorio"
+                return@setOnClickListener
             }
-            // Pasa a la siguiente operación
+            val correctAnswer = operationsSubList?.get(currentOperationIndex)?.answer
+            if (userAnswer.toInt() == correctAnswer) {
+                scoreTotal += 25
+            }
             currentOperationIndex++
-            if (currentOperationIndex < selectedOperations.size) {
+            if (currentOperationIndex < (operationsSubList?.size ?: 0)) {
                 Glide.with(binding.root)
-                    .load(selectedOperations[currentOperationIndex].operations?.get(0)?.img)
+                    .load(operationsSubList?.get(currentOperationIndex)?.img)
                     .into(binding.ivOperacion)
-                // Actualiza el LinearProgressIndicator
-                binding.progressIndicator.progress = (currentOperationIndex + 1) * 25
-                // Cambia el texto del botón a "Enviar" en la última operación
-                if (currentOperationIndex == selectedOperations.size - 1) {
-                    binding.btnSiguiente.text = "Enviar"
-                }
+                binding.progressIndicator.progress += 25
             } else {
+                binding.progressIndicator.progress = 100
                 // Calcula el tiempo total en milisegundos
                 val totalTimeMillis = SystemClock.elapsedRealtime() - startTime
                 // Convierte a segundos totales
@@ -105,8 +98,9 @@ class CalculoTest : Fragment() {
                 }
                 navController.navigate(R.id.action_calculoTest_to_load, bundle)
             }
+            if (currentOperationIndex == (operationsSubList?.size ?: (0 - 1))) {
+                binding.btnSiguiente.text = "Enviar"
+            }
         }
     }
-
-
 }

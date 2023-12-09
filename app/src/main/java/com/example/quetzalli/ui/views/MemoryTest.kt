@@ -28,7 +28,7 @@ class MemoryTest : Fragment() {
     private var scoreTotal = 0
     private var currentLevel = 0
     private val userVm: UserVM by viewModels()
-    private lateinit var currentSequence: SequenceGraph
+    private var currentSequence: SequenceGraph? = null
     private var startTime: Long = 0
 
     override fun onCreateView(
@@ -53,9 +53,13 @@ class MemoryTest : Fragment() {
         memoryVM.sequences.observe(viewLifecycleOwner) { sequences ->
             sequences?.let {
                 currentSequence = sequences.random()
-                Glide.with(binding.root)
-                    .load(currentSequence.levels?.get(0)?.imgSequence)
-                    .into(binding.imgSequence)
+                currentSequence?.let { sequence ->
+                    Glide.with(binding.root)
+                        .load(sequence.levels?.get(0)?.imgSequence)
+                        .into(binding.imgSequence)
+                } ?: run {
+                    Snackbar.make(binding.root, "Error al obtener la secuencia", Snackbar.LENGTH_SHORT).show()
+                }
             }
         }
 
@@ -71,14 +75,14 @@ class MemoryTest : Fragment() {
         buttons.forEach { button ->
             button.setOnClickListener { view ->
                 val userAnswer = button.text.toString()
-                val correctAnswer = currentSequence.levels?.get(currentLevel)?.answer
+                val correctAnswer = currentSequence?.levels?.get(currentLevel)?.answer
                 if (userAnswer == correctAnswer) {
                     scoreTotal += 50
                 }
                 currentLevel++
-                if (currentLevel < (currentSequence.levels?.size ?: 0)) {
+                if (currentLevel < (currentSequence?.levels?.size ?: 0)) {
                     Glide.with(binding.root)
-                        .load(currentSequence.levels?.get(currentLevel)?.imgSequence)
+                        .load(currentSequence?.levels?.get(currentLevel)?.imgSequence)
                         .into(binding.imgSequence)
                     if (currentLevel == 1) {
                         // Ilumina el progressIndicator al 50%
