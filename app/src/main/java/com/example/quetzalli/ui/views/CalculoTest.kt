@@ -74,6 +74,7 @@ class CalculoTest : Fragment() {
                 scoreTotal += 25
             }
             currentOperationIndex++
+            binding.editRespuesta.text?.clear() // Limpia el EditText
             if (currentOperationIndex < (operationsSubList?.size ?: 0)) {
                 Glide.with(binding.root)
                     .load(operationsSubList?.get(currentOperationIndex)?.img)
@@ -103,4 +104,5 @@ class CalculoTest : Fragment() {
             }
         }
     }
+
 }

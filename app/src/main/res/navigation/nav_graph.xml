@@ -54,15 +54,8 @@
         android:name="com.example.quetzalli.ui.views.NotificacionesFragment"
         android:label="@string/notificaciones"
         tools:layout="@layout/fragment_notificaciones" >
-        <action
-            android:id="@+id/action_notificacionesFragment_to_pnotificacionesFragment"
-            app:destination="@id/pnotificacionesFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/pnotificacionesFragment"
-        android:name="com.example.quetzalli.ui.views.PnotificacionesFragment"
-        android:label="@string/pnotificaciones"
-        tools:layout="@layout/fragment_pnotificaciones" />
+
     <fragment
         android:id="@+id/countdown"
         android:name="com.example.quetzalli.ui.views.CountdownFragment"
@@ -99,7 +92,7 @@
     <fragment
         android:id="@+id/ubicacionTest"
         android:name="com.example.quetzalli.ui.views.UbicacionTest"
-        android:label="fragment_ubicacion_test"
+        android:label="@string/test_spatial"
         tools:layout="@layout/fragment_ubicacion_test" >
         <action
             android:id="@+id/action_ubicacionTest_to_load"
@@ -108,7 +101,7 @@
     <fragment
         android:id="@+id/calculoTest"
         android:name="com.example.quetzalli.ui.views.CalculoTest"
-        android:label="fragment_calculo_test"
+        android:label="@string/test_calculation"
         tools:layout="@layout/fragment_calculo_test" >
         <action
             android:id="@+id/action_calculoTest_to_load"

@@ -122,5 +122,7 @@
     <string name="ingresarRespuesta">Ingrese su respuesta</string>
     <string name="siguienteCalculo">Siguiente</string>
     <string name="format_date">00/00/0000</string>
+    <string name="test_calculation">Atención y Cálculo</string>
+    <string name="test_spatial">Espacio-Temporal</string>
 
 </resources>

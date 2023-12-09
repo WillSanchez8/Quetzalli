@@ -7,18 +7,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.quetzalli.R
 import com.example.quetzalli.databinding.FragmentCountdownBinding
+import com.example.quetzalli.viewmodel.TestVM
+import com.example.quetzalli.viewmodel.UserVM
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CountdownFragment : Fragment() {
 
     private lateinit var binding: FragmentCountdownBinding
     private lateinit var countDownTimer: CountDownTimer
     private lateinit var navController: NavController
+    private val testVM: TestVM by viewModels()
+    private val userVM: UserVM by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,12 +78,32 @@ class CountdownFragment : Fragment() {
                 }
             }
         }
-        countDownTimer.start()
-    }
 
+        val userId = userVM.getCurrentUser()?.uid
+        if (userId != null) {
+            testVM.hasUserCompletedAllTests(userId)
+                .observe(viewLifecycleOwner) { hasCompletedAllTests ->
+                    if (hasCompletedAllTests) {
+                        // Todas las pruebas se han completado, muestra un AlertDialog
+                        MaterialAlertDialogBuilder(requireContext())
+                            .setTitle("Pruebas completadas")
+                            .setMessage("Has respondido todas las pruebas por hoy. Continúa el día de mañana.")
+                            .setPositiveButton("OK") { dialog, _ ->
+                                navController.navigate(R.id.sesion)
+                            }
+                            .show()
+                    } else {
+                        // El usuario aún no ha completado todas las pruebas, inicia el temporizador
+                        countDownTimer.start()
+                    }
+                }
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         countDownTimer.cancel()
     }
 }
+
+

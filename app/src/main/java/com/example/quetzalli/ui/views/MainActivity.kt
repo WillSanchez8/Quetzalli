@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private val topLevelDestinatios = setOf(R.id.sesion, R.id.avance, R.id.perfil)
+    private val test = setOf(R.id.memoryTest, R.id.calculoTest, R.id.ubicacionTest, R.id.load)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 // Estás en CountdownFragment, oculta la Toolbar y la BottomNavigationView
                 binding.topAppBar.visibility = View.GONE
                 binding.bottomNav.visibility = View.GONE
-            } else if (destination.id == R.id.memoryTest) {
+            } else if (test.contains(destination.id)) {
                 // Estás en MemoryTestFragment, muestra la Toolbar y la BottomNavigationView, pero oculta el botón de retroceso
                 binding.topAppBar.visibility = View.VISIBLE
                 binding.bottomNav.visibility = View.VISIBLE
@@ -123,7 +124,7 @@ class MainActivity : AppCompatActivity() {
         if (currentDestination == R.id.sesion) {
             // Cierra la aplicación
             finish()
-        } else if (currentDestination == R.id.memoryTest || currentDestination == R.id.load) {
+        } else if (test.contains(currentDestination)) {
             // No hagas nada
         } else {
             super.onBackPressed()
