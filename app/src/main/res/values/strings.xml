@@ -124,5 +124,25 @@
     <string name="format_date">00/00/0000</string>
     <string name="test_calculation">Atención y Cálculo</string>
     <string name="test_spatial">Espacio-Temporal</string>
+    <string name="ask_neurodegenerative">¿Tienes algún familiar que padezca de una enfermedad neurodegenerativa (alzheimer,parkinson, ELA, entre otras)?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="terms">"Bienvenido/a a \"Quetzalli\", la aplicación diseñada para brindar herramientas de detección temprana y monitoreo continuo de la salud cognitiva. Al utilizar esta aplicación, aceptas los siguientes términos y condiciones. Si no estás de acuerdo con estos términos, por favor, no utilices la aplicación.\n
+1. Uso Adecuado:\n
+    - \"Quetzalli\" es exclusivamente para uso personal y no debe considerarse como un sustituto del asesoramiento médico profesional. Los usuarios son responsables de interpretar y actuar según la información proporcionada por la aplicación.\n
+2. Privacidad:\n
+    - La privacidad de nuestros usuarios es una prioridad. La información recopilada, incluyendo datos personales y resultados de pruebas cognitivas, se manejará de acuerdo con nuestra Política de Privacidad. Al utilizar la aplicación, aceptas los términos de nuestra Política de Privacidad.\n
+3. Detección Temprana y Alertas Preliminares:\n
+    - \"Quetzalli\" proporciona alertas preliminares basadas en pruebas cognitivas, pero no reemplaza el diagnóstico profesional. Los usuarios deben buscar siempre la evaluación y el asesoramiento de un profesional de la salud para un diagnóstico preciso.\n
+4. Responsabilidad del Usuario:\n
+    - Los usuarios son responsables de la exactitud de la información proporcionada y de seguir las recomendaciones de búsqueda de atención médica cuando se emiten alertas preliminares.\n
+5. Uso de Tecnología de IA:\n
+    - \"Quetzalli\" utiliza modelos de aprendizaje automático y procesamiento del lenguaje natural para analizar respuestas y detectar posibles anomalías cognitivas. El rendimiento de la aplicación puede variar y no se garantiza la detección precisa en todos los casos.\n
+6. Actualizaciones y Mejoras:\n
+    - Nos reservamos el derecho de realizar actualizaciones y mejoras en la aplicación para mejorar la funcionalidad y la precisión de las pruebas cognitivas.\n
+7. Cambios en los Términos y Condiciones:\n
+    - Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento. Los cambios se notificarán a los usuarios a través de la aplicación. El uso continuado de la aplicación después de dichos cambios constituye la aceptación de los nuevos términos.\n
+8. Ley Aplicable:\n
+    - Estos términos y condiciones se rigen por las leyes del México y cualquier disputa estará sujeta a la jurisdicción exclusiva de los tribunales de la Ciudad de México.Gracias por utilizar \"Quetzalli\"."</string>
 
 </resources>

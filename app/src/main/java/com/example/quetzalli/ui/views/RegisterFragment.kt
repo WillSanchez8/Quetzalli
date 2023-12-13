@@ -120,6 +120,14 @@ class RegisterFragment : Fragment() {
             isValid = false
         }
 
+        val antecedents = binding.rgNeurodegenerative.checkedRadioButtonId
+        if (antecedents == -1) {
+            // Muestra un mensaje de error si ningún botón de radio está seleccionado
+            Snackbar.make(binding.root, "Por favor, selecciona un respuesta", Snackbar.LENGTH_SHORT)
+                .show()
+            isValid = false
+        }
+
         // Valida el checkbox de términos y condiciones
         if (!binding.cbTermsAndConditions.isChecked) {
             // Muestra un mensaje de error si el checkbox no está marcado
@@ -145,6 +153,11 @@ class RegisterFragment : Fragment() {
                     R.id.rd_female -> "Female"
                     else -> ""
                 }
+                val antecedents = when (binding.rgNeurodegenerative.checkedRadioButtonId) {
+                    R.id.rdYes -> "Yes"
+                    R.id.rdNo -> "No"
+                    else -> ""
+                }
 
                 val currentUser = userVM.getCurrentUser()
                 val user = User(
@@ -153,7 +166,8 @@ class RegisterFragment : Fragment() {
                     name = name,
                     date = date,
                     occupation = occupation,
-                    gender = gender
+                    gender = gender,
+                    antecedents = antecedents
                 )
 
                 userVM.registerUser(user) // Llama a registerUser con el objeto User
