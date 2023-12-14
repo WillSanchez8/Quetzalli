@@ -49,7 +49,7 @@ class CountdownFragment : Fragment() {
 
         countDownTimer = object : CountDownTimer(4000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                val secondsRemaining = millisUntilFinished / 1000
+                val secondsRemaining = millisUntilFinished / 1000 - 1
                 if (secondsRemaining > 0) {
                     binding.tvCountdown.text = secondsRemaining.toString()
                 } else {

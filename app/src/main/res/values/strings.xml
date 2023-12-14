@@ -59,7 +59,7 @@
     <string name="go_session">Ponte a prueba</string>
     <string name="instructions">A continuación mediremos sus puntos fuertes/débiles, esto nos permitirá pre-entrenar a la IA para determinar sus niveles y adecuar la realización de las pruebas.</string>
     <string name="start">Empezar</string>
-    <string name="duration">"Duración: "</string>
+    <string name="duration">"Duración: %1$s"</string>
     <string name="detalles">Más detalles</string>
     <string name="descripcion_loading">Estamos procesando sus resultados</string>
     <string name="waiting">Espere</string>
@@ -146,5 +146,17 @@
     - Estos términos y condiciones se rigen por las leyes del México y cualquier disputa estará sujeta a la jurisdicción exclusiva de los tribunales de la Ciudad de México.Gracias por utilizar \"Quetzalli\"."</string>
     <string name="btn_finish">Enviar</string>
     <string name="name_test">Prueba X</string>
+
+    <!--VENTANA INICIO DINÁMICA-->
+    <string name="test_location">Prueba Ubicacion espacio temporal</string>
+    <string name="test_location_instructions">Coloque la fecha actual en la que se encuentra y de clic en el botón enviar</string>
+    <string name="test_location_duration">Aprox. 30 segundos</string>
+    <string name="test_mem">Prueba de memoria</string>
+    <string name="test_mem_instructions">En la siguiente prueba se mostrarán 2 secuencias gráficas, presione la opción que considere correcta</string>
+    <string name="test_mem_duration">Aprox. 1 minuto</string>
+    <string name="test_calc">Prueba de atención y cálculo</string>
+    <string name="test_calc_instructions">Se presentan 4 operaciones en donde deberá de colocar su respuesta en el cuadro de texto, finalmente pulse el botón enviar</string>
+    <string name="test_calc_duration">Aprox. 1 minuto</string>
+
 
 </resources>
