@@ -102,7 +102,7 @@
     <string name="selected_time">%1$s:%2$s</string>
     <string name="program">Guardar</string>
     <string name="Introductory">Introducción</string>
-    <string name="Policy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.</string>
+    <string name="Policy">Fecha de entrada en vigencia: (sujeto a aprobación)\n\n1. Información Recopilada:\n\n    - Recopilamos datos personales como nombre y correo electrónico al crear una cuenta, y resultados de pruebas cognitivas para alertas preliminares y monitoreo.\n\n2. Uso de la Información:\n\n    - Utilizamos la información para proporcionar alertas preliminares basadas en pruebas cognitivas y mejorar la funcionalidad de la aplicación.\n\n3. Compartir Información:\n\n    - Compartimos resultados con profesionales de la salud si el usuario lo solicita, y con colaboradores para mejorar nuestros servicios.\n\n4. Seguridad:\n\n    - Implementamos medidas de seguridad para proteger la información personal.\n\n5. Acceso y Control:\n\n    - Los usuarios tienen derecho a acceder, corregir y solicitar la eliminación de sus datos personales.\n\n6. Terceros:\n\n    - Utilizamos servicios de terceros con acuerdos de confidencialidad para análisis y procesamiento de datos.\n\n7. Cambios en la Política:\n\n    - Nos reservamos el derecho de modificar esta política, notificando cambios a través de la aplicación.\n\n8. Contacto:\n\n    - Para preguntas o inquietudes, contáctanos a través de [correo electrónico de contacto].\n\nGracias por confiar en \"Quetzalli\". Tu privacidad es importante para nosotros.</string>
     <string name="avance_title">Su perfil de rendimiento</string>
     <string name="avance_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis diam, pretium viverra aliquet vitae, tempus nec nibh. Phasellus et sagittis metus. Etiam elementum facilisis leo ut elementum.</string>
 
@@ -145,5 +145,6 @@
 8. Ley Aplicable:\n
     - Estos términos y condiciones se rigen por las leyes del México y cualquier disputa estará sujeta a la jurisdicción exclusiva de los tribunales de la Ciudad de México.Gracias por utilizar \"Quetzalli\"."</string>
     <string name="btn_finish">Enviar</string>
+    <string name="name_test">Prueba X</string>
 
 </resources>
