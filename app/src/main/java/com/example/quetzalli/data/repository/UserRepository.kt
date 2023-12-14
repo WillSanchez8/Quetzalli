@@ -82,4 +82,15 @@ class UserRepository @Inject constructor(val auth: FirebaseAuth, private val db:
     fun logout() {
         auth.signOut()
     }
+
+    //Función para actualizar el usuario
+    suspend fun updateUser(user: User): FetchResult<Void?> {
+        return try {
+            val documentReference = db.collection("users").document(user.id!!)
+            documentReference.set(user).await()
+            FetchResult.Success(null)
+        } catch (e: Exception) {
+            FetchResult.Error(e)
+        }
+    }
 }

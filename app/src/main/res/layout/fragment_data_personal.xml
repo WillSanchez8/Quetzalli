@@ -37,7 +37,7 @@
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/name_user"
+            android:id="@+id/tilName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -57,48 +57,6 @@
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/g_nero"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/nunitosans_bold"
-            android:lineSpacingExtra="2sp"
-            android:text="@string/g_nero"
-            android:textAppearance="@style/g_nero"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_user" />
-
-        <RadioGroup
-            android:id="@+id/rg_genere"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/g_nero">
-
-            <RadioButton
-                android:id="@+id/rd_female"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/female" />
-
-            <RadioButton
-                android:id="@+id/rd_male"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/male" />
-
-            <RadioButton
-                android:id="@+id/other"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/other" />
-
-        </RadioGroup>
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_date"
             android:layout_width="match_parent"
@@ -115,13 +73,13 @@
             app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rg_genere">
+            app:layout_constraintTop_toBottomOf="@+id/tilName">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
+                android:inputType="date"
                 android:hint="@string/date"
                 android:required="true" />
 
@@ -147,17 +105,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/ocupation"
-                android:inputType="none" />
+                android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/save"
+            android:id="@+id/btnSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/guardar_c"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/til_ocupation"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/til_ocupation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

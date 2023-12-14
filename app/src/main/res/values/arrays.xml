@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="occupations">
+        <item>Estudiante</item>
+        <item>Profesor</item>
+        <item>Desarrollador</item>
+        <item>Empresario</item>
+        <item>Otro</item>
+    </string-array>
+</resources>

@@ -1,8 +1,8 @@
 package com.example.quetzalli.ui.views
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.SystemClock
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.example.quetzalli.R
 import com.example.quetzalli.data.models.SequenceGraph
 import com.example.quetzalli.databinding.FragmentMemoryTestBinding
@@ -43,9 +47,6 @@ class MemoryTest : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         init()
         registerEvents()
-
-        //Inicia el cronometro
-        startTime = SystemClock.elapsedRealtime()
     }
 
     private fun init() {
@@ -54,11 +55,49 @@ class MemoryTest : Fragment() {
             sequences?.let {
                 currentSequence = sequences.random()
                 currentSequence?.let { sequence ->
+                    // Muestra el indicador de progreso antes de iniciar la carga de la imagen
+                    binding.LoadingIndicator.visibility = View.VISIBLE
+
                     Glide.with(binding.root)
                         .load(sequence.levels?.get(0)?.imgSequence)
+                        .addListener(object : RequestListener<Drawable> {
+                            override fun onLoadFailed(
+                                e: GlideException?,
+                                model: Any?,
+                                target: Target<Drawable>,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                // Oculta el indicador de progreso en caso de error
+                                Snackbar.make(
+                                    binding.root,
+                                    "Error al obtener la secuencia",
+                                    Snackbar.LENGTH_SHORT
+                                ).show()
+                                return false
+                            }
+
+                            override fun onResourceReady(
+                                resource: Drawable,
+                                model: Any,
+                                target: Target<Drawable>?,
+                                dataSource: DataSource,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                // Oculta el indicador de progreso en caso de exito
+                                binding.LoadingIndicator.visibility = View.GONE
+
+                                //Inicia el cronometro
+                                startTime = SystemClock.elapsedRealtime()
+                                return false
+                            }
+                        })
                         .into(binding.imgSequence)
                 } ?: run {
-                    Snackbar.make(binding.root, "Error al obtener la secuencia", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(
+                        binding.root,
+                        "Error al obtener la secuencia",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 }
             }
         }

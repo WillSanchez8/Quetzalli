@@ -28,6 +28,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/progressIndicator" />
 
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/LoadingIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:indeterminate="true"
+            app:layout_constraintBottom_toBottomOf="@id/imgSequence"
+            app:layout_constraintEnd_toEndOf="@id/imgSequence"
+            app:layout_constraintStart_toStartOf="@id/imgSequence"
+            app:layout_constraintTop_toTopOf="@id/imgSequence" />
+
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvInstructions"
             android:layout_width="match_parent"
