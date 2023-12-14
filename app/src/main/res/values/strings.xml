@@ -124,7 +124,7 @@
     <string name="format_date">00/00/0000</string>
     <string name="test_calculation">Atención y Cálculo</string>
     <string name="test_spatial">Espacio-Temporal</string>
-    <string name="ask_neurodegenerative">¿Tienes algún familiar que padezca de una enfermedad neurodegenerativa (alzheimer,parkinson, ELA, entre otras)?</string>
+    <string name="ask_neurodegenerative">¿Tienes algún familiar que padezca de una enfermedad neurodegenerativa (Huntingtong, Alzheimer, Parkinson, ELA, entre otras)?</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
     <string name="terms">"Bienvenido/a a \"Quetzalli\", la aplicación diseñada para brindar herramientas de detección temprana y monitoreo continuo de la salud cognitiva. Al utilizar esta aplicación, aceptas los siguientes términos y condiciones. Si no estás de acuerdo con estos términos, por favor, no utilices la aplicación.\n
