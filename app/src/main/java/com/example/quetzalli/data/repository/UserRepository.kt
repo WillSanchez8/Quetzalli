@@ -84,10 +84,15 @@ class UserRepository @Inject constructor(val auth: FirebaseAuth, private val db:
     }
 
     //Función para actualizar el usuario
-    suspend fun updateUser(user: User): FetchResult<Void?> {
+    suspend fun updateUser(id: String, name: String, date: String, occupation: String): FetchResult<Void?> {
         return try {
-            val documentReference = db.collection("users").document(user.id!!)
-            documentReference.set(user).await()
+            val documentReference = db.collection("users").document(id)
+            val userUpdates = hashMapOf<String, Any>(
+                "name" to name,
+                "date" to date,
+                "occupation" to occupation
+            )
+            documentReference.update(userUpdates).await()
             FetchResult.Success(null)
         } catch (e: Exception) {
             FetchResult.Error(e)

@@ -111,28 +111,28 @@ class DataPersonalFragment : Fragment() {
     private fun registerEvents() {
         binding.btnSave.setOnClickListener {
             if (validateFields()) {
-                val currentUser = userVM.getCurrentUser()
-                val user = User(
-                    id = currentUser?.uid,
-                    name = binding.etName.text.toString(),
-                    date = binding.etDate.text.toString(),
-                    occupation = binding.etOcupation.text.toString()
-                )
+                val id = userVM.getCurrentUser()?.uid
+                val name = binding.etName.text.toString()
+                val date = binding.etDate.text.toString()
+                val occupation = binding.etOcupation.text.toString()
 
-                userVM.updateUser(user).observe(viewLifecycleOwner) { fetchResult ->
-                    fetchResult?.let { result ->
-                        when (result) {
-                            is FetchResult.Success -> {
-                                Snackbar.make(binding.root, "Usuario actualizado con éxito", Snackbar.LENGTH_SHORT).show()
-                            }
-                            is FetchResult.Error -> {
-                                Snackbar.make(binding.root, result.exception.message ?: "Error al actualizar el usuario", Snackbar.LENGTH_SHORT).show()
+                id?.let {
+                    userVM.updateUser(it, name, date, occupation).observe(viewLifecycleOwner) { fetchResult ->
+                        fetchResult?.let { result ->
+                            when (result) {
+                                is FetchResult.Success -> {
+                                    Snackbar.make(binding.root, "Usuario actualizado con éxito", Snackbar.LENGTH_SHORT).show()
+                                }
+                                is FetchResult.Error -> {
+                                    Snackbar.make(binding.root, result.exception.message ?: "Error al actualizar el usuario", Snackbar.LENGTH_SHORT).show()
+                                }
                             }
                         }
                     }
                 }
             }
         }
+
     }
 
 }

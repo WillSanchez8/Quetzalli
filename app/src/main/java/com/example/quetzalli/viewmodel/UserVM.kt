@@ -65,13 +65,15 @@ class UserVM @Inject constructor(private val userRepo: UserRepository) : ViewMod
     }
 
     //Función para actualizar el usuario
-    fun updateUser(user: User): LiveData<FetchResult<Void?>> {
+    fun updateUser(id: String, name: String, date: String, occupation: String): LiveData<FetchResult<Void?>> {
         val result = MutableLiveData<FetchResult<Void?>>()
         viewModelScope.launch {
-            result.value = userRepo.updateUser(user)
+            result.value = userRepo.updateUser(id, name, date, occupation)
         }
         return result
     }
+
+
 
     fun logout() {
         viewModelScope.launch {
