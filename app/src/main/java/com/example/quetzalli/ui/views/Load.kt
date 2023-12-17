@@ -5,56 +5,67 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.quetzalli.R
+import com.example.quetzalli.databinding.FragmentLoadBinding
+import com.example.quetzalli.viewmodel.TestVM
+import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Load.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class Load : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentLoadBinding
+    private lateinit var navController: NavController
+    private val testVM : TestVM by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_load, container, false)
+        binding = FragmentLoadBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment GenerationG.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Load().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val testType = arguments?.getString("testType")
+        val userId = arguments?.getString("userId")
+        val scoreTotal = arguments?.getInt("scoreTotal")
+        val totalTime = arguments?.getString("totalTime")
+
+        val isUploadSuccessful = when (testType) {
+            "testubicacion" -> testVM.addTestData("testspace", userId!!, scoreTotal!!, totalTime!!)
+            "testmemory" -> testVM.addTestData("testmemory", userId!!, scoreTotal!!, totalTime!!)
+            "testcalculation" -> testVM.addTestData("testcalculation", userId!!, scoreTotal!!, totalTime!!)
+            else -> throw IllegalArgumentException("Tipo de prueba desconocido: $testType")
+        }
+
+        isUploadSuccessful.observe(viewLifecycleOwner) { success ->
+            if (success) {
+                val bundle = Bundle().apply {
+                    putString("completedTest", testType)
                 }
+                // Navega de nuevo al fragmento SesionFragment si la subida de datos fue exitosa
+                navController.navigate(R.id.action_load_to_sesion, bundle)
+            } else {
+                // Muestra un mensaje de error si la subida de datos falla
+                Snackbar.make(binding.root, "Error al subir los datos", Snackbar.LENGTH_SHORT).show()
             }
+        }
+
+        init()
     }
+
+    private fun init() {
+        navController = findNavController()
+        Glide.with(binding.root).asGif()
+            .load(R.drawable.icons8_gear)
+            .into(binding.configuration)
+    }
+
 }

@@ -7,6 +7,7 @@ data class User(
     var name: String? = null,
     var email: String? = null,
     var gender: String? = null,
+    var antecedents: String? = null,
     var date: String? = null,
     var occupation: String? = null
 ) : Serializable

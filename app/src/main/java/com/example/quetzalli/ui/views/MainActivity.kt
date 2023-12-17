@@ -1,15 +1,9 @@
 package com.example.quetzalli.ui.views
 
-import android.content.Context
-import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.view.Menu
 import android.view.View
-import androidx.core.content.FileProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -19,14 +13,13 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.quetzalli.R
 import com.example.quetzalli.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import java.io.File
-import java.io.FileOutputStream
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private val topLevelDestinatios = setOf(R.id.sesion, R.id.avance, R.id.perfil)
+    private val test = setOf(R.id.memoryTest, R.id.calculoTest, R.id.ubicacionTest, R.id.load)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,13 +56,27 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        //Configuración del back button
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if (topLevelDestinatios.contains(destination.id)) {
-                // Estás en un fragmento de nivel superior, oculta el icono de navegación
+            if (destination.id == R.id.countdown || destination.id == R.id.load) {
+                // Estás en CountdownFragment, oculta la Toolbar y la BottomNavigationView
+                binding.topAppBar.visibility = View.GONE
+                binding.bottomNav.visibility = View.GONE
+            } else if (test.contains(destination.id)) {
+                // Estás en MemoryTestFragment, muestra la Toolbar y la BottomNavigationView, pero oculta el botón de retroceso
+                binding.topAppBar.visibility = View.VISIBLE
+                binding.bottomNav.visibility = View.VISIBLE
+                binding.topAppBar.navigationIcon = null
+            } else if (topLevelDestinatios.contains(destination.id)) {
+                // Estás en un fragmento de nivel superior, muestra la Toolbar y la BottomNavigationView
+                binding.topAppBar.visibility = View.VISIBLE
+                binding.bottomNav.visibility = View.VISIBLE
+                // Oculta el icono de navegación
                 binding.topAppBar.navigationIcon = null
             } else {
-                // No estás en un fragmento de nivel superior, muestra el icono de navegación
+                // No estás en un fragmento de nivel superior, muestra la Toolbar y la BottomNavigationView
+                binding.topAppBar.visibility = View.VISIBLE
+                binding.bottomNav.visibility = View.VISIBLE
+                // Muestra el icono de navegación
                 binding.topAppBar.setNavigationIcon(R.drawable.backbutton)
             }
         }
@@ -99,9 +106,6 @@ class MainActivity : AppCompatActivity() {
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
         super.onPrepareOptionsMenu(menu)
         when (navController.currentDestination?.id) {
-            R.id.sesion -> {
-                menu.findItem(R.id.notification).isVisible = true
-            }
             R.id.avance -> {
                 menu.findItem(R.id.notification).isVisible = true
             }
@@ -115,7 +119,17 @@ class MainActivity : AppCompatActivity() {
         return true
 
     }
-
+    override fun onBackPressed() {
+        val currentDestination = navController.currentDestination?.id
+        if (currentDestination == R.id.sesion) {
+            // Cierra la aplicación
+            finish()
+        } else if (test.contains(currentDestination)) {
+            // No hagas nada
+        } else {
+            super.onBackPressed()
+        }
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.tool_bar_menu, menu)
         return true

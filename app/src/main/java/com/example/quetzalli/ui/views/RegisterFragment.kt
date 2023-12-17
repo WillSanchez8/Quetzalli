@@ -1,6 +1,5 @@
 package com.example.quetzalli.ui.views
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
@@ -13,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.RadioButton
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -24,7 +22,7 @@ import com.example.quetzalli.databinding.FragmentRegisterBinding
 import com.example.quetzalli.viewmodel.UserVM
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -84,13 +82,13 @@ class RegisterFragment : Fragment() {
         binding.cbTermsAndConditions.movementMethod = LinkMovementMethod.getInstance()
     }
 
-
     override fun onResume() {
         super.onResume()
-
-        val ocupation = arrayOf("Estudiante", "Profesor", "Empleado", "Otro")
-        val adapter = context?.let { ArrayAdapter(it, R.layout.ocupation_item, ocupation) }
-        binding.etOcupation.setAdapter(adapter)
+        val occupation = resources.getStringArray(R.array.occupations)
+        val adapter = ArrayAdapter(requireContext(), R.layout.ocupation_item, occupation)
+        val autoCompleteTextView = binding.tilOcupation.editText as? MaterialAutoCompleteTextView
+        autoCompleteTextView?.setAdapter(adapter)
+        autoCompleteTextView?.dropDownHeight = ViewGroup.LayoutParams.WRAP_CONTENT
     }
 
     private fun validateFields(): Boolean {
@@ -120,6 +118,14 @@ class RegisterFragment : Fragment() {
             isValid = false
         }
 
+        val antecedents = binding.rgNeurodegenerative.checkedRadioButtonId
+        if (antecedents == -1) {
+            // Muestra un mensaje de error si ningún botón de radio está seleccionado
+            Snackbar.make(binding.root, "Por favor, selecciona un respuesta", Snackbar.LENGTH_SHORT)
+                .show()
+            isValid = false
+        }
+
         // Valida el checkbox de términos y condiciones
         if (!binding.cbTermsAndConditions.isChecked) {
             // Muestra un mensaje de error si el checkbox no está marcado
@@ -145,6 +151,11 @@ class RegisterFragment : Fragment() {
                     R.id.rd_female -> "Female"
                     else -> ""
                 }
+                val antecedents = when (binding.rgNeurodegenerative.checkedRadioButtonId) {
+                    R.id.rdYes -> "Yes"
+                    R.id.rdNo -> "No"
+                    else -> ""
+                }
 
                 val currentUser = userVM.getCurrentUser()
                 val user = User(
@@ -153,7 +164,8 @@ class RegisterFragment : Fragment() {
                     name = name,
                     date = date,
                     occupation = occupation,
-                    gender = gender
+                    gender = gender,
+                    antecedents = antecedents
                 )
 
                 userVM.registerUser(user) // Llama a registerUser con el objeto User

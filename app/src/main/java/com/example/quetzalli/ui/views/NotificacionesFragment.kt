@@ -5,15 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
-import com.example.quetzalli.R
 import com.example.quetzalli.databinding.FragmentNotificacionesBinding
 
 class NotificacionesFragment : Fragment() {
 
     private lateinit var binding: FragmentNotificacionesBinding
-    private lateinit var navController: NavController
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,7 +26,7 @@ class NotificacionesFragment : Fragment() {
     }
 
     private fun init() {
-        navController = findNavController()
+
     }
 
     private fun registerEvents() {

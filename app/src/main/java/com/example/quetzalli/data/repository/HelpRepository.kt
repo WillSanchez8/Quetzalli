@@ -13,15 +13,8 @@ class HelpRepository @Inject constructor(private val db: FirebaseFirestore ) {
         return try {
             val querySnapshot = db.collection("faqs").get().await()
             val faq = querySnapshot.toObjects(FAQ::class.java)
-
-            // Agrega un log para registrar la información recuperada
-            Log.d("HelpRepository", "Se recuperaron las siguientes preguntas frecuentes: $faq")
-
             FetchResult.Success(faq)
         } catch (e: Exception) {
-            // Agrega un log para registrar el error
-            Log.e("HelpRepository", "Error al obtener las preguntas frecuentes", e)
-
             FetchResult.Error(e)
         }
     }

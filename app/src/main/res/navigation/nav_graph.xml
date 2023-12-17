@@ -9,7 +9,11 @@
         android:id="@+id/sesion"
         android:name="com.example.quetzalli.ui.views.SesionFragment"
         android:label="@string/Inicio"
-        tools:layout="@layout/fragment_sesion" />
+        tools:layout="@layout/fragment_sesion" >
+        <action
+            android:id="@+id/action_sesion_to_countdown"
+            app:destination="@id/countdown" />
+    </fragment>
     <fragment
         android:id="@+id/avance"
         android:name="com.example.quetzalli.ui.views.AvanceFragment"
@@ -50,13 +54,57 @@
         android:name="com.example.quetzalli.ui.views.NotificacionesFragment"
         android:label="@string/notificaciones"
         tools:layout="@layout/fragment_notificaciones" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/countdown"
+        android:name="com.example.quetzalli.ui.views.CountdownFragment"
+        android:label="fragment_countdown"
+        tools:layout="@layout/fragment_countdown" >
         <action
-            android:id="@+id/action_notificacionesFragment_to_pnotificacionesFragment"
-            app:destination="@id/pnotificacionesFragment" />
+            android:id="@+id/action_countdown_to_memoryTest"
+            app:destination="@id/memoryTest" />
+        <action
+            android:id="@+id/action_countdown_to_ubicacionTest"
+            app:destination="@id/ubicacionTest" />
+        <action
+            android:id="@+id/action_countdown_to_calculoTest"
+            app:destination="@id/calculoTest" />
     </fragment>
     <fragment
-        android:id="@+id/pnotificacionesFragment"
-        android:name="com.example.quetzalli.ui.views.PnotificacionesFragment"
-        android:label="@string/pnotificaciones"
-        tools:layout="@layout/fragment_pnotificaciones" />
+        android:id="@+id/memoryTest"
+        android:name="com.example.quetzalli.ui.views.MemoryTest"
+        android:label="@string/test_memory"
+        tools:layout="@layout/fragment_memory_test" >
+        <action
+            android:id="@+id/action_memoryTest_to_load"
+            app:destination="@id/load" />
+    </fragment>
+    <fragment
+        android:id="@+id/load"
+        android:name="com.example.quetzalli.ui.views.Load"
+        android:label="fragment_load"
+        tools:layout="@layout/fragment_load" >
+        <action
+            android:id="@+id/action_load_to_sesion"
+            app:destination="@id/sesion" />
+    </fragment>
+    <fragment
+        android:id="@+id/ubicacionTest"
+        android:name="com.example.quetzalli.ui.views.UbicacionTest"
+        android:label="@string/test_spatial"
+        tools:layout="@layout/fragment_ubicacion_test" >
+        <action
+            android:id="@+id/action_ubicacionTest_to_load"
+            app:destination="@id/load" />
+    </fragment>
+    <fragment
+        android:id="@+id/calculoTest"
+        android:name="com.example.quetzalli.ui.views.CalculoTest"
+        android:label="@string/test_calculation"
+        tools:layout="@layout/fragment_calculo_test" >
+        <action
+            android:id="@+id/action_calculoTest_to_load"
+            app:destination="@id/load" />
+    </fragment>
 </navigation>

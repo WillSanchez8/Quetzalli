@@ -5,17 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.views.Load">
-    <!--Este es un comentario-->
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/configuration"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="210dp"
-        android:src="@drawable/confi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/wait"
@@ -53,18 +51,5 @@
                 android:textSize="16sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:layout_width="196dp"
-        android:layout_height="125dp"
-        android:layout_gravity="center"
-        android:indeterminate="true"
-        android:visibility="gone"
-        android:layout_marginTop="20dp"
-        app:indicatorColor="#1E5FA6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wait" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
