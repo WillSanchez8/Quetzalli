@@ -4,6 +4,7 @@ import com.example.quetzalli.data.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -73,6 +74,39 @@ class UserRepository @Inject constructor(val auth: FirebaseAuth, private val db:
                 // El usuario no existe, devuelve null
                 FetchResult.Success("user")
             }
+        } catch (e: Exception) {
+            FetchResult.Error(e)
+        }
+    }
+
+    //Función para actualizar el gráfico de memoria
+    suspend fun updateGraphMem(userId: String, url: String): FetchResult<Void?> {
+        return try {
+            val documentReference = db.collection("users").document(userId)
+            documentReference.update("graphMem", FieldValue.arrayUnion(url)).await()
+            FetchResult.Success(null)
+        } catch (e: Exception) {
+            FetchResult.Error(e)
+        }
+    }
+
+    //Función para actualizar el gráfico de cálculo
+    suspend fun updateGraphCal(userId: String, url: String): FetchResult<Void?> {
+        return try {
+            val documentReference = db.collection("users").document(userId)
+            documentReference.update("graphCal", FieldValue.arrayUnion(url)).await()
+            FetchResult.Success(null)
+        } catch (e: Exception) {
+            FetchResult.Error(e)
+        }
+    }
+
+    //Función para actualizar el gráfico de espacio
+    suspend fun updateGraphSpace(userId: String, url: String): FetchResult<Void?> {
+        return try {
+            val documentReference = db.collection("users").document(userId)
+            documentReference.update("graphSpace", FieldValue.arrayUnion(url)).await()
+            FetchResult.Success(null)
         } catch (e: Exception) {
             FetchResult.Error(e)
         }

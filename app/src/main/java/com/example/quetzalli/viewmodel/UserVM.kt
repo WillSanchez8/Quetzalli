@@ -73,7 +73,29 @@ class UserVM @Inject constructor(private val userRepo: UserRepository) : ViewMod
         return result
     }
 
+    fun updateGraphMem(userId: String, url: String): LiveData<FetchResult<Void?>> {
+        val result = MutableLiveData<FetchResult<Void?>>()
+        viewModelScope.launch {
+            result.value = userRepo.updateGraphMem(userId, url)
+        }
+        return result
+    }
 
+    fun updateGraphCal(userId: String, url: String): LiveData<FetchResult<Void?>> {
+        val result = MutableLiveData<FetchResult<Void?>>()
+        viewModelScope.launch {
+            result.value = userRepo.updateGraphCal(userId, url)
+        }
+        return result
+    }
+
+    fun updateGraphSpace(userId: String, url: String): LiveData<FetchResult<Void?>> {
+        val result = MutableLiveData<FetchResult<Void?>>()
+        viewModelScope.launch {
+            result.value = userRepo.updateGraphSpace(userId, url)
+        }
+        return result
+    }
 
     fun logout() {
         viewModelScope.launch {
