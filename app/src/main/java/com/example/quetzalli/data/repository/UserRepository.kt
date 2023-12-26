@@ -1,6 +1,7 @@
 package com.example.quetzalli.data.repository
 
 import com.example.quetzalli.data.models.User
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -9,7 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class UserRepository @Inject constructor(val auth: FirebaseAuth, private val db: FirebaseFirestore){
+class UserRepository @Inject constructor(val auth: FirebaseAuth, private val db: FirebaseFirestore, private val googleSignInClient: GoogleSignInClient){
 
     //Función para iniciar sesión con Google
     suspend fun signInWithGoogle(idToken: String): FetchResult<FirebaseUser> {
@@ -115,6 +116,8 @@ class UserRepository @Inject constructor(val auth: FirebaseAuth, private val db:
     //Función para cerrar sesión
     fun logout() {
         auth.signOut()
+
+        googleSignInClient.signOut()
     }
 
     //Función para actualizar el usuario
