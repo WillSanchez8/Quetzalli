@@ -1,6 +1,7 @@
 package com.example.quetzalli.modules
 
 import com.example.quetzalli.core.Constants
+import com.example.quetzalli.network.WebService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,10 +16,17 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(): Retrofit{
+    fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(Constants.API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    @Singleton
+    @Provides
+    fun provideWebService(retrofit: Retrofit): WebService {
+        return retrofit.create(WebService::class.java)
+    }
 }
+
