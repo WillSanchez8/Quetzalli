@@ -49,7 +49,7 @@ class CountdownFragment : Fragment() {
 
         countDownTimer = object : CountDownTimer(4000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                val secondsRemaining = millisUntilFinished / 1000 - 1
+                val secondsRemaining = (millisUntilFinished - 1) / 1000
                 if (secondsRemaining > 0) {
                     binding.tvCountdown.text = secondsRemaining.toString()
                 } else {
@@ -73,30 +73,34 @@ class CountdownFragment : Fragment() {
                             }
                             .show()
                     }
-
+                    null -> navController.navigate(R.id.action_countdown_to_memoryTest) // Si es la primera vez, navega a la prueba de memoria
                     else -> navController.navigate(R.id.action_countdown_to_memoryTest)
                 }
             }
-        }
+        }.start() // Inicia el contador
 
         val userId = userVM.getCurrentUser()?.uid
         if (userId != null) {
-            testVM.hasUserCompletedAllTests(userId)
-                .observe(viewLifecycleOwner) { hasCompletedAllTests ->
-                    if (hasCompletedAllTests) {
-                        // Todas las pruebas se han completado, muestra un AlertDialog
-                        MaterialAlertDialogBuilder(requireContext())
-                            .setTitle("Pruebas completadas")
-                            .setMessage("Has respondido todas las pruebas por hoy. Continúa el día de mañana.")
-                            .setPositiveButton("OK") { dialog, _ ->
-                                navController.navigate(R.id.sesion)
-                            }
-                            .show()
-                    } else {
-                        // El usuario aún no ha completado todas las pruebas, inicia el temporizador
-                        countDownTimer.start()
+            testVM.getNextTest().observe(viewLifecycleOwner) { nextTest ->
+                if (nextTest == null) {
+                    // No hay más pruebas, muestra un AlertDialog
+                    MaterialAlertDialogBuilder(requireContext())
+                        .setTitle("Pruebas completadas")
+                        .setMessage("Has respondido todas las pruebas por hoy. Continúa el día de mañana.")
+                        .setPositiveButton("OK") { dialog, _ ->
+                            navController.navigate(R.id.sesion)
+                        }
+                        .show()
+                } else {
+                    // Hay una prueba pendiente, navega a la prueba
+                    when (nextTest.type) {
+                        "testmemory" -> navController.navigate(R.id.action_countdown_to_memoryTest)
+                        "testubicacion" -> navController.navigate(R.id.action_countdown_to_ubicacionTest)
+                        "testcalculation" -> navController.navigate(R.id.action_countdown_to_calculoTest)
+                        // Añade más casos si tienes más tipos de pruebas
                     }
                 }
+            }
         }
     }
 

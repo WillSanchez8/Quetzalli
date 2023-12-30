@@ -63,5 +63,17 @@ class TestVM @Inject constructor(private val testRepo: TestRepository) : ViewMod
         }
     }
 
+    fun getNextTest(): LiveData<Test?> {
+        val nextTest = MutableLiveData<Test?>()
+        viewModelScope.launch {
+            val result = testRepo.getNextTest()
+            if (result is FetchResult.Success) {
+                nextTest.value = result.data
+            } else if (result is FetchResult.Error) {
+                _error.postValue(result.exception.message ?: "An unknown error occurred")
+            }
+        }
+        return nextTest
+    }
 
 }

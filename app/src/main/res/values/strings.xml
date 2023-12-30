@@ -57,9 +57,9 @@
     <string name="guardar_c">Guardar cambios</string>
     <string name="photo_user">Fotografía de usuario</string>
     <string name="go_session">Ponte a prueba</string>
-    <string name="instructions">A continuación mediremos sus puntos fuertes/débiles, esto nos permitirá pre-entrenar a la IA para determinar sus niveles y adecuar la realización de las pruebas.</string>
+    <string name="instructions">Las pruebas permiten medir sus puntos débiles y fuertes que más adelante podrá consultar en el apartado de avance.</string>
     <string name="start">Empezar</string>
-    <string name="duration">"Duración: %1$s"</string>
+    <string name="duration">"Duración: Aproximadamente \n4 minutos con 30 segundos</string>
     <string name="detalles">Más detalles</string>
     <string name="descripcion_loading">Estamos procesando sus resultados</string>
     <string name="waiting">Espere</string>

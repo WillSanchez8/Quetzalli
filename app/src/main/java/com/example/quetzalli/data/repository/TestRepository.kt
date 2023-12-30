@@ -8,6 +8,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.coroutines.tasks.await
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
@@ -18,6 +19,7 @@ class TestRepository @Inject constructor(private val db: FirebaseFirestore) {
     suspend fun insertTestData(collectionName: String, test: Test): FetchResult<DocumentReference> {
         return try {
             test.completed = true // Establece isCompleted en true cuando la prueba se completa
+            test.type = collectionName // Establece el tipo de prueba
             val documentReference = db.collection(collectionName).add(test).await()
             FetchResult.Success(documentReference)
         } catch (e: Exception) {
@@ -53,6 +55,26 @@ class TestRepository @Inject constructor(private val db: FirebaseFirestore) {
                 .await()
             val test = querySnapshot.documents[0].toObject(Test::class.java)
             FetchResult.Success(test)
+        } catch (e: Exception) {
+            FetchResult.Error(e)
+        }
+    }
+
+    // Función para obtener los datos de la prueba
+    suspend fun getNextTest(): FetchResult<Test> {
+        return try {
+            val collections = listOf("testdata", "testcalculation", "testmemory")
+            for (collection in collections) {
+                val querySnapshot = db.collection(collection).whereEqualTo("completed", false).limit(1).get().await()
+                if (!querySnapshot.isEmpty) {
+                    val document = querySnapshot.documents[0]
+                    val test = document.toObject(Test::class.java)
+                    if (test != null) {
+                        return FetchResult.Success(test)
+                    }
+                }
+            }
+            FetchResult.Error(Exception("No hay más pruebas disponibles"))
         } catch (e: Exception) {
             FetchResult.Error(e)
         }

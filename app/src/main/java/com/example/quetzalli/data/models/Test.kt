@@ -8,7 +8,9 @@ data class Test(
     val scoreTotal: Int? = null,
     val totalTime: String? = null,
     val date: Timestamp? = null,
-    var completed: Boolean? = null
+    var completed: Boolean? = null,
+    var type: String? = null // Nuevo campo para el tipo de prueba
 ): Serializable
+
 
 

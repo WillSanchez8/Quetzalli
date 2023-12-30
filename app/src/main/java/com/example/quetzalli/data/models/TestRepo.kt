@@ -8,6 +8,6 @@ data class TestRep(
     val time : String? = null,
     val description : String? = null,
     val image : String? = null,
-    val testTipo: String? = null
+    val type: String? = null
 ): Serializable
 
