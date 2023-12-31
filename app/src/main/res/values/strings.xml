@@ -160,6 +160,7 @@
     <string name="results_view">Ver resultados</string>
     <string name="title_test">Título de gráfica</string>
     <string name="save">Guardar</string>
+    <string name="interpretacion">Cada punto mostrado es por día, para comprender la gráfica presentada se establece que aquellos puntos donde usted tenga un mayor retardo asi como si el puntaje decae drásticamente, estarán siendo evaluados por la IA asi como otros parámetros para determinar en que momento es necesario acudir con un especialista</string>
 
 
 </resources>
