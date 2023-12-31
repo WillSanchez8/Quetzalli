@@ -44,22 +44,6 @@ class TestRepository @Inject constructor(private val db: FirebaseFirestore) {
         }
     }
 
-    //Función para obtener la ultima fecha de la prueba
-    suspend fun getLastTestPoint(userId: String): FetchResult<Test?> {
-        return try {
-            val querySnapshot = db.collection("testcalculation")
-                .whereEqualTo("userId", userId)
-                .orderBy("date", Query.Direction.DESCENDING)
-                .limit(1)
-                .get()
-                .await()
-            val test = querySnapshot.documents[0].toObject(Test::class.java)
-            FetchResult.Success(test)
-        } catch (e: Exception) {
-            FetchResult.Error(e)
-        }
-    }
-
     // Función para obtener los datos de la prueba
     suspend fun getNextTest(): FetchResult<Test> {
         return try {

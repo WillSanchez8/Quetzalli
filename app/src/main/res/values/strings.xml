@@ -158,6 +158,8 @@
     <string name="test_calc_instructions">Se presentan 4 operaciones en donde deberá de colocar su respuesta en el cuadro de texto, finalmente pulse el botón enviar</string>
     <string name="test_calc_duration">Aprox. 1 minuto</string>
     <string name="results_view">Ver resultados</string>
+    <string name="title_test">Título de gráfica</string>
+    <string name="save">Guardar</string>
 
 
 </resources>

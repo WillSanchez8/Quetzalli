@@ -58,27 +58,18 @@ class AvanceFragment : Fragment() {
         // Obtiene los datos de las pruebas
         testVM.getTestData()
 
-        testVM.lastTestPoint.observe(viewLifecycleOwner) { test ->
-            // Calcula la fecha una semana después de la fecha obtenida
-            var newDate = "-----"
-            if (test != null) {
-                val calendar = Calendar.getInstance()
-                calendar.time = (test.date?.toDate() ?: calendar.add(Calendar.DATE, 6)) as Date
-                newDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(calendar.time)
-            }
-            // Actualiza el TextView con la nueva fecha
-            val text = getString(R.string.avance_description, newDate)
-            binding.tvDescription.text = text
-        }
+        // Obtiene la fecha actual del dispositivo
+        val calendar = Calendar.getInstance()
+        val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(calendar.time)
+
+        // Actualiza el TextView con la fecha actual
+        val text = getString(R.string.avance_description, currentDate)
+        binding.tvDescription.text = text
 
         binding.progressIndicator.visibility = View.VISIBLE
         // Obtiene los datos de las pruebas
         testVM.getTestData()
-        // Obtiene el último punto de prueba del usuario
-        val userId = userVM.getCurrentUser()?.uid
-        if (userId != null) {
-            testVM.getLastTestPoint(userId)
-        }
+
     }
 
     private fun init() {

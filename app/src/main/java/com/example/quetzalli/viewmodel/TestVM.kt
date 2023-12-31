@@ -9,16 +9,20 @@ import com.example.quetzalli.data.models.Test
 import com.example.quetzalli.data.models.TestRep
 import com.example.quetzalli.data.repository.FetchResult
 import com.example.quetzalli.data.repository.TestRepository
+import com.example.quetzalli.network.WebService
+import com.example.quetzalli.network.response.ApiResponse
 import com.google.firebase.Timestamp
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
-class TestVM @Inject constructor(private val testRepo: TestRepository) : ViewModel() {
+class TestVM @Inject constructor(private val testRepo: TestRepository, private val webService: WebService) : ViewModel() {
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> get() = _error
@@ -52,17 +56,6 @@ class TestVM @Inject constructor(private val testRepo: TestRepository) : ViewMod
         }
     }
 
-    fun getLastTestPoint(userId: String) {
-        viewModelScope.launch {
-            val result = testRepo.getLastTestPoint(userId)
-            if (result is FetchResult.Success) {
-                lastTestPoint.value = result.data
-            } else if (result is FetchResult.Error) {
-                _error.postValue(result.exception.message ?: "An unknown error occurred")
-            }
-        }
-    }
-
     fun getNextTest(): LiveData<Test?> {
         val nextTest = MutableLiveData<Test?>()
         viewModelScope.launch {
@@ -76,4 +69,56 @@ class TestVM @Inject constructor(private val testRepo: TestRepository) : ViewMod
         return nextTest
     }
 
+    //Llamadas hacia API
+    fun createGraph1(userId: String): LiveData<ApiResponse> {
+        val response = MutableLiveData<ApiResponse>()
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val result = webService.createGraph1(userId)
+                withContext(Dispatchers.Main) {
+                    response.postValue(result.body()) // Aquí llamamos a body()
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    _error.postValue(e.message ?: "An unknown error occurred")
+                }
+            }
+        }
+        return response
+    }
+
+    fun createGraph2(userId: String): LiveData<ApiResponse> {
+        val response = MutableLiveData<ApiResponse>()
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val result = webService.createGraph2(userId)
+                withContext(Dispatchers.Main) {
+                    response.postValue(result.body()) // Aquí llamamos a body()
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    _error.postValue(e.message ?: "An unknown error occurred")
+                }
+            }
+        }
+        return response
+    }
+
+    fun createGraph3(userId: String): LiveData<ApiResponse> {
+        val response = MutableLiveData<ApiResponse>()
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val result = webService.createGraph3(userId)
+                withContext(Dispatchers.Main) {
+                    response.postValue(result.body()) // Aquí llamamos a body()
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    _error.postValue(e.message ?: "An unknown error occurred")
+                    e.printStackTrace()
+                }
+            }
+        }
+        return response
+    }
 }

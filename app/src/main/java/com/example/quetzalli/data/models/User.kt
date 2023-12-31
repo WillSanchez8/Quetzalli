@@ -10,7 +10,4 @@ data class User(
     var antecedents: String? = null,
     var date: String? = null,
     var occupation: String? = null,
-    var graphMem : List<String>? = null,
-    var graphCal : List<String>? = null,
-    var graphSpace : List<String>? = null,
 ) : Serializable

@@ -20,6 +20,8 @@ class UserVM @Inject constructor(private val userRepo: UserRepository) : ViewMod
     private val _registerResult = MutableLiveData<FetchResult<Void?>>() //Es una variable mutable
     val registerResult: LiveData<FetchResult<Void?>> get() = _registerResult //Es una variable de solo lectura
 
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> get() = _error
     fun signInWithGoogle(idToken: String) {
         viewModelScope.launch {
             val result = userRepo.signInWithGoogle(idToken)
@@ -69,30 +71,6 @@ class UserVM @Inject constructor(private val userRepo: UserRepository) : ViewMod
         val result = MutableLiveData<FetchResult<Void?>>()
         viewModelScope.launch {
             result.value = userRepo.updateUser(id, name, date, occupation)
-        }
-        return result
-    }
-
-    fun updateGraphMem(userId: String, url: String): LiveData<FetchResult<Void?>> {
-        val result = MutableLiveData<FetchResult<Void?>>()
-        viewModelScope.launch {
-            result.value = userRepo.updateGraphMem(userId, url)
-        }
-        return result
-    }
-
-    fun updateGraphCal(userId: String, url: String): LiveData<FetchResult<Void?>> {
-        val result = MutableLiveData<FetchResult<Void?>>()
-        viewModelScope.launch {
-            result.value = userRepo.updateGraphCal(userId, url)
-        }
-        return result
-    }
-
-    fun updateGraphSpace(userId: String, url: String): LiveData<FetchResult<Void?>> {
-        val result = MutableLiveData<FetchResult<Void?>>()
-        viewModelScope.launch {
-            result.value = userRepo.updateGraphSpace(userId, url)
         }
         return result
     }
