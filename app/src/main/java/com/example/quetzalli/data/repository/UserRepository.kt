@@ -1,5 +1,6 @@
 package com.example.quetzalli.data.repository
 
+import com.example.quetzalli.data.models.DataTraining
 import com.example.quetzalli.data.models.User
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.FirebaseAuth
@@ -80,39 +81,6 @@ class UserRepository @Inject constructor(val auth: FirebaseAuth, private val db:
         }
     }
 
-    //Función para actualizar el gráfico de memoria
-    suspend fun updateGraphMem(userId: String, url: String): FetchResult<Void?> {
-        return try {
-            val documentReference = db.collection("users").document(userId)
-            documentReference.update("graphMem", FieldValue.arrayUnion(url)).await()
-            FetchResult.Success(null)
-        } catch (e: Exception) {
-            FetchResult.Error(e)
-        }
-    }
-
-    //Función para actualizar el gráfico de cálculo
-    suspend fun updateGraphCal(userId: String, url: String): FetchResult<Void?> {
-        return try {
-            val documentReference = db.collection("users").document(userId)
-            documentReference.update("graphCal", FieldValue.arrayUnion(url)).await()
-            FetchResult.Success(null)
-        } catch (e: Exception) {
-            FetchResult.Error(e)
-        }
-    }
-
-    //Función para actualizar el gráfico de espacio
-    suspend fun updateGraphSpace(userId: String, url: String): FetchResult<Void?> {
-        return try {
-            val documentReference = db.collection("users").document(userId)
-            documentReference.update("graphSpace", FieldValue.arrayUnion(url)).await()
-            FetchResult.Success(null)
-        } catch (e: Exception) {
-            FetchResult.Error(e)
-        }
-    }
-
     //Función para cerrar sesión
     fun logout() {
         auth.signOut()
@@ -135,4 +103,27 @@ class UserRepository @Inject constructor(val auth: FirebaseAuth, private val db:
             FetchResult.Error(e)
         }
     }
+
+    //Función para obtener información de pruebas y del usuario
+    suspend fun getDataFromCollections(userId: String): FetchResult<List<DataTraining>> {
+        val collections = listOf("testmemory", "testdata", "testspace")
+        val data = mutableListOf<DataTraining>()
+        try {
+            for (collection in collections) {
+                val documents = db.collection(collection).get().await()
+                for (document in documents) {
+                    val scoreTotal = document.get("scoreTotal") as Int
+                    val totalTime = document.get("totalTime") as String
+                    val userDocument = db.collection("users").document(userId).get().await()
+                    val antecedents = userDocument.get("antecedents") as String
+                    val gender = userDocument.get("gender") as String
+                    data.add(DataTraining(scoreTotal, totalTime, antecedents, gender))
+                }
+            }
+            return FetchResult.Success(data)
+        } catch (e: Exception) {
+            return FetchResult.Error(e)
+        }
+    }
+
 }
