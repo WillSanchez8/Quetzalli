@@ -107,23 +107,33 @@ class UserRepository @Inject constructor(val auth: FirebaseAuth, private val db:
     //Función para obtener información de pruebas y del usuario
     suspend fun getDataFromCollections(userId: String): FetchResult<List<DataTraining>> {
         val collections = listOf("testmemory", "testdata", "testspace")
-        val data = mutableListOf<DataTraining>()
+        val scoreTotalList = mutableListOf<Int>()
+        val totalTimeList = mutableListOf<Float>()
         try {
             for (collection in collections) {
                 val documents = db.collection(collection).get().await()
                 for (document in documents) {
                     val scoreTotal = document.get("scoreTotal") as Int
-                    val totalTime = document.get("totalTime") as String
-                    val userDocument = db.collection("users").document(userId).get().await()
-                    val antecedents = userDocument.get("antecedents") as String
-                    val gender = userDocument.get("gender") as String
-                    data.add(DataTraining(scoreTotal, totalTime, antecedents, gender))
+                    val totalTime = convertTimeToDecimal(document.get("totalTime") as String)
+                    scoreTotalList.add(scoreTotal)
+                    totalTimeList.add(totalTime)
                 }
             }
-            return FetchResult.Success(data)
+            val userDocument = db.collection("users").document(userId).get().await()
+            val antecedents = userDocument.get("antecedents") as Int
+            val gender = userDocument.get("gender") as Int
+            val data = DataTraining(scoreTotalList, totalTimeList, antecedents, gender)
+            return FetchResult.Success(listOf(data))
         } catch (e: Exception) {
             return FetchResult.Error(e)
         }
+    }
+
+    private fun convertTimeToDecimal(time: String): Float {
+        val parts = time.split(":")
+        val minutes = parts[0].toInt()
+        val seconds = parts[1].toInt()
+        return minutes + seconds / 60.0f
     }
 
 }

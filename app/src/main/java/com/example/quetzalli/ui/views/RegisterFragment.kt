@@ -147,14 +147,14 @@ class RegisterFragment : Fragment() {
                 val date = binding.tilDate.editText?.text.toString()
                 val occupation = binding.tilOcupation.editText?.text.toString()
                 val gender = when (binding.rgGenere.checkedRadioButtonId) {
-                    R.id.rd_male -> "Male"
-                    R.id.rd_female -> "Female"
-                    else -> ""
+                    R.id.rd_male -> 0
+                    R.id.rd_female -> 1
+                    else -> null
                 }
                 val antecedents = when (binding.rgNeurodegenerative.checkedRadioButtonId) {
-                    R.id.rdYes -> "Yes"
-                    R.id.rdNo -> "No"
-                    else -> ""
+                    R.id.rdYes -> 1
+                    R.id.rdNo -> 0
+                    else -> null
                 }
 
                 val currentUser = userVM.getCurrentUser()
