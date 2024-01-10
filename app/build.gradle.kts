@@ -85,6 +85,9 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.facebook.shimmer:shimmer:0.5.0")
 
+    //IA Tensorflow
+    implementation ("org.tensorflow:tensorflow-lite:2.7.0")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

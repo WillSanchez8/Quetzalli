@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +15,15 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.quetzalli.R
+import com.example.quetzalli.data.models.DataTraining
+import com.example.quetzalli.data.repository.FetchResult
 import com.example.quetzalli.databinding.FragmentAvanceBinding
+import com.example.quetzalli.tensorflow.ModelLoader
 import com.example.quetzalli.ui.adapters.TestAdapter
 import com.example.quetzalli.viewmodel.TestVM
 import com.example.quetzalli.viewmodel.UserVM
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -46,8 +52,43 @@ class AvanceFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val modelLoader = ModelLoader(requireContext(), "cognitive.tflite")
+        val tflite = modelLoader.loadModel()
 
         init()
+        val id = userVM.getCurrentUser()?.uid.toString()
+        userVM.getDataFromCollections(id)
+
+        userVM.dataTrainingResult.observe(viewLifecycleOwner) { result ->
+            if (result is FetchResult.Success) {
+                val data = result.data
+                /*val input = prepareInput(data)
+                val inputArray = input.map { it.toFloatArray() }.toTypedArray()
+                Log.d("AvanceFragment", "inputArray: ${inputArray.contentDeepToString()}")
+                // Run the model with the input data
+                val outputArray = Array(1) { FloatArray(3) }
+                tflite?.run(inputArray, outputArray)
+
+                // Process the output to get the information you need
+                val prediction1 = outputArray[0][0]
+                val prediction2 = outputArray[0][1]
+                val prediction3 = outputArray[0][2]
+
+                // Show a MaterialAlertDialog based on the predictions
+                if (prediction1 < 30 || prediction2 < 30 || prediction3 < 30) {
+                    MaterialAlertDialogBuilder(requireContext())
+                        .setTitle("Alerta")
+                        .setMessage("Tus resultados fueron poco favorables, te recomendamos acudir con un especialista")
+                        .setPositiveButton("De acuerdo") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        .show()
+                }*/
+            } else if (result is FetchResult.Error) {
+                Snackbar.make(binding.root, "Error al obtener los datos", Snackbar.LENGTH_SHORT)
+                    .show()
+            }
+        }
 
         testVM.tests.observe(viewLifecycleOwner) { tests ->
             // Crea un nuevo TestAdapter con los datos de las pruebas
@@ -89,6 +130,17 @@ class AvanceFragment : Fragment() {
         testVM.getTestData()
 
     }
+
+    /*private fun prepareInput(dataList: List<DataTraining>): List<List<Float>> {
+        return dataList.map { data ->
+            val scoreTotal = data.scoreTotal.map { it.toFloat() }
+            val totalTime = data.totalTime
+            val antecedents = listOf(data.antecedents.toFloat())
+            val gender = listOf(data.gender.toFloat())
+
+            scoreTotal + totalTime + antecedents + gender
+        }
+    }*/
 
     private fun init() {
         navController = findNavController()

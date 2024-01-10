@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.quetzalli.data.models.DataTraining
 import com.example.quetzalli.data.models.User
 import com.example.quetzalli.data.repository.FetchResult
 import com.example.quetzalli.data.repository.UserRepository
@@ -73,6 +74,16 @@ class UserVM @Inject constructor(private val userRepo: UserRepository) : ViewMod
             result.value = userRepo.updateUser(id, name, date, occupation)
         }
         return result
+    }
+
+    private val _dataTrainingResult = MutableLiveData<FetchResult<List<DataTraining>>>()
+    val dataTrainingResult: LiveData<FetchResult<List<DataTraining>>> get() = _dataTrainingResult
+
+    fun getDataFromCollections(userId: String) {
+        viewModelScope.launch {
+            val result = userRepo.getDataFromCollections(userId)
+            _dataTrainingResult.value = result
+        }
     }
 
     fun logout() {
