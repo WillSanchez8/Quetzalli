@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
+import com.google.firebase.firestore.Query
 
 class UserRepository @Inject constructor(
     val auth: FirebaseAuth,
@@ -116,6 +117,45 @@ class UserRepository @Inject constructor(
     }
 
     //Función para obtener información de pruebas y del usuario
+    suspend fun getDataFromCollections(userId: String): FetchResult<DataTraining> {
+        val collections = listOf("testmemory", "testcalculation", "testspace")
+        var data: DataTraining? = null
+        try {
+            val userDocument = db.collection("users").document(userId).get().await()
+            val antecedents = userDocument.get("antecedents") as Long
+            val gender = userDocument.get("gender") as Long
+
+            for (collection in collections) {
+                val document = db.collection(collection)
+                    .orderBy("date", Query.Direction.DESCENDING)
+                    .limit(1)
+                    .get()
+                    .await()
+                    .documents
+                    .firstOrNull()
+
+                if (document != null) {
+                    val score = document.get("scoreTotal") as Long
+                    val time = convertTimeToDecimal(document.get("totalTime") as String)
+
+                    data = when (collection) {
+                        "testmemory" -> DataTraining(antecedents, gender, 0, 0f, score, time, 0, 0f)
+                        "testcalculation" -> DataTraining(antecedents, gender, 0, 0f, 0, 0f, score, time)
+                        "testspace" -> DataTraining(antecedents, gender, score, time, 0, 0f, 0, 0f)
+                        else -> throw IllegalArgumentException("Invalid collection name")
+                    }
+                }
+            }
+            if (data != null) {
+                return FetchResult.Success(data)
+            } else {
+                throw Exception("No data found")
+            }
+        } catch (e: Exception) {
+            return FetchResult.Error(e)
+        }
+    }
+    /*
     suspend fun getDataFromCollections(userId: String): FetchResult<List<DataTraining>> {
         val collections = listOf("testmemory", "testcalculation", "testspace")
         val dataList = mutableListOf<DataTraining>()
@@ -146,6 +186,7 @@ class UserRepository @Inject constructor(
             return FetchResult.Error(e)
         }
     }
+    */
 
     private fun convertTimeToDecimal(time: String): Float {
         val parts = time.split(":")
