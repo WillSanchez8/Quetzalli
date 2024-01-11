@@ -62,6 +62,7 @@ class AvanceFragment : Fragment() {
         userVM.dataTrainingResult.observe(viewLifecycleOwner) { result ->
             if (result is FetchResult.Success) {
                 val data = result.data
+                Log.d("AvanceFragment", "data: $data")
                 /*val input = prepareInput(data)
                 val inputArray = input.map { it.toFloatArray() }.toTypedArray()
                 Log.d("AvanceFragment", "inputArray: ${inputArray.contentDeepToString()}")

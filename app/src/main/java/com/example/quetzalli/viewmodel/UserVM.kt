@@ -76,8 +76,8 @@ class UserVM @Inject constructor(private val userRepo: UserRepository) : ViewMod
         return result
     }
 
-    private val _dataTrainingResult = MutableLiveData<FetchResult<List<DataTraining>>>()
-    val dataTrainingResult: LiveData<FetchResult<List<DataTraining>>> get() = _dataTrainingResult
+    private val _dataTrainingResult = MutableLiveData<FetchResult<DataTraining>>()
+    val dataTrainingResult: LiveData<FetchResult<DataTraining>> get() = _dataTrainingResult
 
     fun getDataFromCollections(userId: String) {
         viewModelScope.launch {
