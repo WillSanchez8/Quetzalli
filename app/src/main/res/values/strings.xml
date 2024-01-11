@@ -57,9 +57,9 @@
     <string name="guardar_c">Guardar cambios</string>
     <string name="photo_user">Fotografía de usuario</string>
     <string name="go_session">Ponte a prueba</string>
-    <string name="instructions">A continuación mediremos sus puntos fuertes/débiles, esto nos permitirá pre-entrenar a la IA para determinar sus niveles y adecuar la realización de las pruebas.</string>
+    <string name="instructions">Las pruebas permiten medir sus puntos débiles y fuertes que más adelante podrá consultar en el apartado de avance.</string>
     <string name="start">Empezar</string>
-    <string name="duration">"Duración: %1$s"</string>
+    <string name="duration">"Duración: Aproximadamente \n4 minutos con 30 segundos</string>
     <string name="detalles">Más detalles</string>
     <string name="descripcion_loading">Estamos procesando sus resultados</string>
     <string name="waiting">Espere</string>
@@ -104,7 +104,7 @@
     <string name="Introductory">Introducción</string>
     <string name="Policy">Fecha de entrada en vigencia: (sujeto a aprobación)\n\n1. Información Recopilada:\n\n    - Recopilamos datos personales como nombre y correo electrónico al crear una cuenta, y resultados de pruebas cognitivas para alertas preliminares y monitoreo.\n\n2. Uso de la Información:\n\n    - Utilizamos la información para proporcionar alertas preliminares basadas en pruebas cognitivas y mejorar la funcionalidad de la aplicación.\n\n3. Compartir Información:\n\n    - Compartimos resultados con profesionales de la salud si el usuario lo solicita, y con colaboradores para mejorar nuestros servicios.\n\n4. Seguridad:\n\n    - Implementamos medidas de seguridad para proteger la información personal.\n\n5. Acceso y Control:\n\n    - Los usuarios tienen derecho a acceder, corregir y solicitar la eliminación de sus datos personales.\n\n6. Terceros:\n\n    - Utilizamos servicios de terceros con acuerdos de confidencialidad para análisis y procesamiento de datos.\n\n7. Cambios en la Política:\n\n    - Nos reservamos el derecho de modificar esta política, notificando cambios a través de la aplicación.\n\n8. Contacto:\n\n    - Para preguntas o inquietudes, contáctanos a través de [correo electrónico de contacto].\n\nGracias por confiar en \"Quetzalli\". Tu privacidad es importante para nosotros.</string>
     <string name="avance_title">Su perfil de rendimiento</string>
-    <string name="avance_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec felis diam, pretium viverra aliquet vitae, tempus nec nibh. Phasellus et sagittis metus. Etiam elementum facilisis leo ut elementum.</string>
+    <string name="avance_description">Cada semana podrá consultar sus resultados en la parte inferior por cada prueba. \nActualizado el: %1$s</string>
 
     <!--Ventanas de Tests-->
     <string name="share_to">"Compartir imagen usando"</string>
@@ -157,6 +157,10 @@
     <string name="test_calc">Prueba de atención y cálculo</string>
     <string name="test_calc_instructions">Se presentan 4 operaciones en donde deberá de colocar su respuesta en el cuadro de texto, finalmente pulse el botón enviar</string>
     <string name="test_calc_duration">Aprox. 1 minuto</string>
+    <string name="results_view">Ver resultados</string>
+    <string name="title_test">Título de gráfica</string>
+    <string name="save">Guardar</string>
+    <string name="interpretacion">Cada punto mostrado es por día, para comprender la gráfica presentada se establece que aquellos puntos donde usted tenga un mayor retardo asi como si el puntaje decae drásticamente, estarán siendo evaluados por la IA asi como otros parámetros para determinar en que momento es necesario acudir con un especialista</string>
 
 
 </resources>

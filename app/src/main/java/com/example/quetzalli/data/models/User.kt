@@ -6,8 +6,8 @@ data class User(
     var id: String? = null,
     var name: String? = null,
     var email: String? = null,
-    var gender: String? = null,
-    var antecedents: String? = null,
+    var gender: Int? = null,
+    var antecedents: Int? = null,
     var date: String? = null,
-    var occupation: String? = null
+    var occupation: String? = null,
 ) : Serializable

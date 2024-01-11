@@ -19,6 +19,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SignInFragment : Fragment() {
@@ -30,7 +31,9 @@ class SignInFragment : Fragment() {
     private lateinit var binding: FragmentSignInBinding
     private lateinit var navController: NavController
     private val userVM: UserVM by viewModels()
-    private lateinit var googleSignInClient: GoogleSignInClient
+
+    @Inject
+    lateinit var googleSignInClient: GoogleSignInClient
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -72,24 +75,25 @@ class SignInFragment : Fragment() {
                 userVM.signInResult.observe(viewLifecycleOwner) { result ->
                     if (result is FetchResult.Success) {
                         val firebaseUser = result.data
-                        userVM.getUserById(firebaseUser.uid).observe(viewLifecycleOwner) { userResult ->
-                            if (userResult is FetchResult.Success && userResult.data != null) {
-                                // El usuario ya existe, navega a MainActivity
-                                val intent = Intent(activity, MainActivity::class.java)
-                                startActivity(intent)
-                                activity?.finish()
-                            } else if (userResult is FetchResult.Success && userResult.data == null) {
-                                // El usuario no existe, navega a RegisterFragment
-                                navController.navigate(R.id.action_signIn_to_register)
-                            } else if (userResult is FetchResult.Error) {
-                                // Error al obtener el usuario, muestra un mensaje de error
-                                Snackbar.make(
-                                    binding.root,
-                                    "Error al obtener el usuario, intente de nuevo más tarde",
-                                    Snackbar.LENGTH_LONG
-                                ).show()
+                        userVM.getUserById(firebaseUser.uid)
+                            .observe(viewLifecycleOwner) { userResult ->
+                                if (userResult is FetchResult.Success && userResult.data != null) {
+                                    // El usuario ya existe, navega a MainActivity
+                                    val intent = Intent(activity, MainActivity::class.java)
+                                    startActivity(intent)
+                                    activity?.finish()
+                                } else if (userResult is FetchResult.Success && userResult.data == null) {
+                                    // El usuario no existe, navega a RegisterFragment
+                                    navController.navigate(R.id.action_signIn_to_register)
+                                } else if (userResult is FetchResult.Error) {
+                                    // Error al obtener el usuario, muestra un mensaje de error
+                                    Snackbar.make(
+                                        binding.root,
+                                        "Error al obtener el usuario, intente de nuevo más tarde",
+                                        Snackbar.LENGTH_LONG
+                                    ).show()
+                                }
                             }
-                        }
                     } else if (result is FetchResult.Error) {
                         // Sign in fail
                         val exception = result.exception

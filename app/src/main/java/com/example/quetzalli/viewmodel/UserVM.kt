@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.quetzalli.data.models.DataTraining
 import com.example.quetzalli.data.models.User
 import com.example.quetzalli.data.repository.FetchResult
 import com.example.quetzalli.data.repository.UserRepository
@@ -20,6 +21,8 @@ class UserVM @Inject constructor(private val userRepo: UserRepository) : ViewMod
     private val _registerResult = MutableLiveData<FetchResult<Void?>>() //Es una variable mutable
     val registerResult: LiveData<FetchResult<Void?>> get() = _registerResult //Es una variable de solo lectura
 
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> get() = _error
     fun signInWithGoogle(idToken: String) {
         viewModelScope.launch {
             val result = userRepo.signInWithGoogle(idToken)
@@ -73,7 +76,15 @@ class UserVM @Inject constructor(private val userRepo: UserRepository) : ViewMod
         return result
     }
 
+    private val _dataTrainingResult = MutableLiveData<FetchResult<List<DataTraining>>>()
+    val dataTrainingResult: LiveData<FetchResult<List<DataTraining>>> get() = _dataTrainingResult
 
+    fun getDataFromCollections(userId: String) {
+        viewModelScope.launch {
+            val result = userRepo.getDataFromCollections(userId)
+            _dataTrainingResult.value = result
+        }
+    }
 
     fun logout() {
         viewModelScope.launch {
