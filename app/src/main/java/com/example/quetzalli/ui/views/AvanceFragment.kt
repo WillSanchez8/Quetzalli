@@ -59,23 +59,33 @@ class AvanceFragment : Fragment() {
         val id = userVM.getCurrentUser()?.uid.toString()
         userVM.getDataFromCollections(id)
 
-        userVM.dataTrainingResult.observe(viewLifecycleOwner) { result ->
-            if (result is FetchResult.Success) {
-                val data = result.data
-                Log.d("AvanceFragment", "data: $data")
-                /*val input = prepareInput(data)
-                val inputArray = input.map { it.toFloatArray() }.toTypedArray()
-                Log.d("AvanceFragment", "inputArray: ${inputArray.contentDeepToString()}")
-                // Run the model with the input data
-                val outputArray = Array(1) { FloatArray(3) }
-                tflite?.run(inputArray, outputArray)
+        var dialogShown = false
 
-                // Process the output to get the information you need
+        userVM.dataTrainingResult.observe(viewLifecycleOwner) { result ->
+            if (result is FetchResult.Success && !dialogShown) {
+                val data = result.data
+                // Convertir los datos de DataTraining a un array de flotantes
+                val inputArray = floatArrayOf(
+                    data.antecedents.toFloat(),
+                    data.gender.toFloat(),
+                    data.scoreSpace.toFloat(),
+                    data.TimeSpace,
+                    data.scoreMem.toFloat(),
+                    data.TimeMem,
+                    data.scoreCal.toFloat(),
+                    data.TimeCal
+                )
+
+                // Ejecutar el modelo con los datos de entrada
+                val outputArray = Array(1) { FloatArray(3) }
+                tflite?.run(arrayOf(inputArray), outputArray)
+
+                // Procesar la salida del modelo para obtener las predicciones
                 val prediction1 = outputArray[0][0]
                 val prediction2 = outputArray[0][1]
                 val prediction3 = outputArray[0][2]
 
-                // Show a MaterialAlertDialog based on the predictions
+                // Mostrar un MaterialAlertDialog basado en las predicciones
                 if (prediction1 < 30 || prediction2 < 30 || prediction3 < 30) {
                     MaterialAlertDialogBuilder(requireContext())
                         .setTitle("Alerta")
@@ -84,7 +94,8 @@ class AvanceFragment : Fragment() {
                             dialog.dismiss()
                         }
                         .show()
-                }*/
+                    dialogShown = true
+                }
             } else if (result is FetchResult.Error) {
                 Snackbar.make(binding.root, "Error al obtener los datos", Snackbar.LENGTH_SHORT)
                     .show()
@@ -127,21 +138,8 @@ class AvanceFragment : Fragment() {
         binding.tvDescription.text = spannable
 
         binding.progressIndicator.visibility = View.VISIBLE
-        // Obtiene los datos de las pruebas
-        testVM.getTestData()
 
     }
-
-    /*private fun prepareInput(dataList: List<DataTraining>): List<List<Float>> {
-        return dataList.map { data ->
-            val scoreTotal = data.scoreTotal.map { it.toFloat() }
-            val totalTime = data.totalTime
-            val antecedents = listOf(data.antecedents.toFloat())
-            val gender = listOf(data.gender.toFloat())
-
-            scoreTotal + totalTime + antecedents + gender
-        }
-    }*/
 
     private fun init() {
         navController = findNavController()
