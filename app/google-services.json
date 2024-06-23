@@ -14,11 +14,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "226791460010-qqnagc53dtmus10mjfunlb3u1qvtar9n.apps.googleusercontent.com",
+          "client_id": "226791460010-on59tks64s2lvph43r5delq80nph30q1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.quetzalli",
-            "certificate_hash": "b99c9f127f21677e297defcebc48c4c44c5c5cfc"
+            "certificate_hash": "b48cfdd02277cd244f09db445970585034eb25bb"
+          }
+        },
+        {
+          "client_id": "226791460010-thtg11dtdc3aa7ka84k1knqc3ps0b2i3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quetzalli",
+            "certificate_hash": "786e229bf161c343788181601f76c119fc2cb605"
           }
         },
         {
