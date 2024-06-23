@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "226791460010",
+    "project_id": "quetzalli-4692b",
+    "storage_bucket": "quetzalli-4692b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:226791460010:android:fb4c015f31340c7ec094d3",
+        "android_client_info": {
+          "package_name": "com.example.quetzalli"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "226791460010-on59tks64s2lvph43r5delq80nph30q1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quetzalli",
+            "certificate_hash": "b48cfdd02277cd244f09db445970585034eb25bb"
+          }
+        },
+        {
+          "client_id": "226791460010-thtg11dtdc3aa7ka84k1knqc3ps0b2i3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quetzalli",
+            "certificate_hash": "786e229bf161c343788181601f76c119fc2cb605"
+          }
+        },
+        {
+          "client_id": "226791460010-2n1dj2ffa7mofpaln05eojan2pcnubdu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7rUjL7vC8BPPFwbHW2wadHj-FZl-BZ4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "226791460010-2n1dj2ffa7mofpaln05eojan2pcnubdu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
